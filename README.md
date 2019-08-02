@@ -26,3 +26,26 @@
 ## User Persona #2:
 ### Frankie is a card-shark and loves to gamble.  He frequently visits the riverboat casino in his home town.  Frankie is becoming tired of winning so much at all the card games that he has mastered.  He is looking for a way to practice the game over and over so that he can sharpen his skills and become a pro before his next casino visit.
 
+## Minimum Viable Product:
+- As a user, I should be able to see what my chip total is and increment my next bet by clicking on different buttons.
+- As a user, I should be able to click a button to simulate a dice roll.
+- As a user, I should be able to place a bet on any of the point values at the top of the board once the point has been established.
+- As a user, I should be able to place a bet on any of the side bets once the point has been established.
+- As a user, I should be able to see the current bets that are active and have the ability to cancel them if the rules of the game permit it.
+- As a user, I should be able to hear dealer call-outs that mimic those heard on traditional craps tables.
+- As a user, I should be able to hear the sound of the dice rolling when I push the button to roll the dice.
+- As a user, I should see a message showing the status of my last roll.
+- As a user, I should be paid the correct amount when I win a bet.
+
+## Stretch Goals:
+- Animated dice rolls
+- Stylized casino chips
+- Texturized playing field to mimic a felt surface
+- Help button(s) for different fields on the board
+- Suggested bet options
+- Ability to play odds on the Pass Line
+- Remove the list of active bets and replace with chip images on the bet fields
+- Add a list of previous rolls
+- Add a list of previous roll frequency
+- Add selectable 'felt' colors for the play field
+
