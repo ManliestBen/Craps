@@ -21,7 +21,9 @@ main * {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(0, 140, 80);
 }
+
 div {
     border: 1px solid black;
 }
@@ -47,6 +49,7 @@ div {
     grid-row: 5 / 6;
     border-top: none;
 }
+
 #dontPass {
     grid-column: 1 / 6;
     grid-row: 6;
@@ -60,4 +63,17 @@ div {
 #anyCraps {
     grid-column: 6 / 8;
     grid-row: 7;
+}
+
+.sideBet {
+    font-size: 4vmin;
+}
+
+.pointRow {
+    font-size: 3vmin;
+    
+}
+
+#dontCome {
+    
 }
