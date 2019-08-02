@@ -24,11 +24,36 @@ main * {
 }
 div {
     border: 2px solid black;
-    /* text-align: center; */
     
-
 }
 
 #come {
     border: 2px solid black;
+    grid-column: 1 / 6;
+    grid-row: 2 / 4;
+}
+
+#anySeven {
+    grid-column: 6 / 8;
+    grid-row: 2;
+}
+
+#field {
+    grid-column: 1 / 6;
+    grid-row: 4 / 6;
+}
+
+#dontPass {
+    grid-column: 1 / 6;
+    grid-row: 6;
+}
+
+#passLine {
+    grid-column: 1 / 6;
+    grid-row: 7;
+}
+
+#anyCraps {
+    grid-column: 6 / 8;
+    grid-row: 7;
 }
