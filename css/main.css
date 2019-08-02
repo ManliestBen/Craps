@@ -75,5 +75,9 @@ div {
 }
 
 #dontCome {
-    
+    text-align: center;
+}
+
+.center {
+    font-size: 3vmin;
 }
