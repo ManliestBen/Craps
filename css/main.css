@@ -4,11 +4,10 @@ html, * {
 }
 
 body {
-    /* height: 100vh; */
     display: grid;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
+    background-color: darkgreen;
 }
 
 main {
@@ -26,7 +25,7 @@ main * {
     background-color: rgb(0, 140, 80);
 }
 
-div {
+main div {
     border: 1px solid black;
 }
 
@@ -87,17 +86,15 @@ div {
 
 section.bottomRow {
     display: grid;
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* height: 20vh; */
-    /* flex-wrap: wrap; */
     grid-template-columns: 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh;
-    grid-template-rows: 10vh 10vh;
+    grid-template-rows: 7vh 7vh;
+    justify-items: center;
+    background-color: rgb(0, 140, 80)
+    
 }
 
 .chip {
     display: flex;
-    /* flex-direction: row; */
     border-radius: 50%;
     height: 5vmin;
     width: 5vmin;
@@ -107,7 +104,58 @@ section.bottomRow {
 
 .bottomRow {
     align-items: center;
-    height: 5vmin;
-    /* margin: auto; */
-    
+}
+
+#chipTotal {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    font-size: 2.75vh;
+}
+
+#chipDisplay {
+    grid-column: 3 / 5;
+    grid-row: 2;
+    font-size: 2.75vh;
+}
+
+#rollBtn {
+    grid-column: 6 / 8;
+    grid-row: 2;
+    height: 6vh;
+    font-size: 2vh;
+}
+
+#resetBtn {
+    grid-column: 9 / 10;
+    grid-row: 2;
+}
+
+#betAmount {
+    grid-column: 9 / 11;
+    grid-row: 1;
+    font-size: 2.3vh;
+}
+
+#betDisplay {
+    grid-column: 7 / 9;
+    grid-row: 1;
+    font-size: 2.75vh;
+}
+
+#chip1 {
+    background-color: white;
+}
+
+#chip5 {
+    background-color: red;
+}
+#chip25 {
+    background-color: green;
+}
+#chip100 {
+    background-color: black;
+    color: white;
+}
+#chip500 {
+    background-color: pink;
 }
