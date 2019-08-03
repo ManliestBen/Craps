@@ -60,6 +60,7 @@ function render(){
 }
 
 function dimChips(){
+    document.getElementById('chip1000').style.visibility= ((chipTotal < 1000) ? 'hidden' : 'visible');
     document.getElementById('chip500').style.visibility= ((chipTotal < 500) ? 'hidden' : 'visible');
     document.getElementById('chip100').style.visibility= ((chipTotal < 100) ? 'hidden' : 'visible');
     document.getElementById('chip25').style.visibility= ((chipTotal < 25) ? 'hidden' : 'visible');
