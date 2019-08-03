@@ -42,6 +42,7 @@ div {
     grid-column: 1 / 6;
     grid-row: 4 / 5;
     border-bottom: none;
+    word-spacing: 30px;
 }
 
 #fieldBottom {

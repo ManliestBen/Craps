@@ -1,7 +1,7 @@
 # Craps Simulator
 ##
 ## Objective:
-### - Create a browser-based game that accurately models playing a game of craps.
+### - Create a browser-based game that accurately models playing a standard game of craps.
 ##
 ##
 ##
@@ -20,6 +20,11 @@
 - HTML
 - Git 
 
+## Pseudocode:
+- Bet is placed
+- Roll the dice
+
+# User Experience:
 ## User Persona #1:
 ### Abby works for a tech company in Austin, Texas.  Her employer frequently sends her to tech conferences around the globe.  Abby has an upcoming trip to Las Vegas, and knows from previous trips that her co-workers **love** playing craps as a group.  Abby wants to learn the rules of the game, how the game flows, and most importantly the lingo that goes along with it.  
 
