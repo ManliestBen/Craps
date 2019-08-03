@@ -14,15 +14,21 @@ let chipTotal, betTotal;
 /*-------Event Listeners-------*/
 document.querySelector('section').addEventListener('click', chipClick);
 document.querySelector('main').addEventListener('click', betClick);
+document.getElementById('resetBtn').addEventListener('click', reset);
 
 
 
 /*-------Functions-------*/
 init();
 
+function reset(){
+    init ();
+}
 function init() {
+    
     chipTotal = 500;
     betTotal = 0;
+    dimChips();
     render();
 }
 
@@ -54,19 +60,9 @@ function render(){
 }
 
 function dimChips(){
-    if (chipTotal < 500) {
-        document.getElementById('chip500').style.visibility= "hidden";
-    }
-    if (chipTotal < 100) {
-        document.getElementById('chip100').style.visibility= "hidden";
-    }
-    if (chipTotal < 25) {
-        document.getElementById('chip25').style.visibility= "hidden";
-    }
-    if (chipTotal < 5) {
-        document.getElementById('chip5').style.visibility= "hidden";
-    }
-    if (chipTotal < 1) {
-        document.getElementById('chip1').style.visibility= "hidden";
-    }
+    document.getElementById('chip500').style.visibility= ((chipTotal < 500) ? 'hidden' : 'visible');
+    document.getElementById('chip100').style.visibility= ((chipTotal < 100) ? 'hidden' : 'visible');
+    document.getElementById('chip25').style.visibility= ((chipTotal < 25) ? 'hidden' : 'visible');
+    document.getElementById('chip5').style.visibility= ((chipTotal < 5) ? 'hidden' : 'visible');
+    document.getElementById('chip1').style.visibility= ((chipTotal < 1) ? 'hidden' : 'visible');
 }
