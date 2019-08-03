@@ -42,6 +42,13 @@ function betChips(){
 }
 
 function render(){
+    dimChips();
+    document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
+    document.getElementById('betDisplay').innerText = '$ ' + betTotal;
+    
+}
+
+function dimChips(){
     if (chipTotal < 500) {
         document.getElementById('chip500').style.visibility= "hidden";
     }
@@ -57,7 +64,4 @@ function render(){
     if (chipTotal < 1) {
         document.getElementById('chip1').style.visibility= "hidden";
     }
-    document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
-    document.getElementById('betDisplay').innerText = '$ ' + betTotal;
 }
-
