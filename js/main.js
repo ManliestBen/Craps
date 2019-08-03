@@ -15,6 +15,8 @@ let chipTotal, betTotal;
 document.querySelector('section').addEventListener('click', chipClick);
 document.querySelector('main').addEventListener('click', betClick);
 document.getElementById('resetBtn').addEventListener('click', reset);
+document.getElementById('rollBtn').addEventListener('click', rollDice);
+
 
 
 
@@ -45,11 +47,17 @@ function chipClick(evt) {
 
 
 function betClick(evt){
-    console.log(evt.target);
+    if (evt.target.className === 'pointRow'){
+
+    } else if (evt.target.className === 'sideBet') {
+
+    } else if (evt.target.className === 'center') {
+    
+    }
 }
 
-function betChips(){
-
+function rollDice(){
+    console.log('Rolling dice');
 }
 
 function render(){
