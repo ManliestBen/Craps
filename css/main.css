@@ -4,8 +4,8 @@ html, * {
 }
 
 body {
-    height: 100vh;
-    display: flex;
+    height: 80vh;
+    display: grid;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,7 @@ div {
 
 .pointRow {
     font-size: 3vmin;
-    
+ 
 }
 
 #dontCome {
@@ -81,4 +81,23 @@ div {
 
 .center {
     font-size: 3vmin;
+}
+
+section {
+    display: flex;
+}
+
+.chip {
+    display: flex;
+    border-radius: 50%;
+    height: 5vmin;
+    width: 5vmin;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottomRow {
+    align-items: center;
+    height: 5vmin;
+    margin: auto;
 }
