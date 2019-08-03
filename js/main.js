@@ -12,7 +12,8 @@ let chipTotal, betTotal;
 
 
 /*-------Event Listeners-------*/
-document.querySelector('body').addEventListener('click', handleClick);
+document.querySelector('section').addEventListener('click', chipClick);
+document.querySelector('main').addEventListener('click', betClick);
 
 
 
@@ -25,18 +26,22 @@ function init() {
     render();
 }
 
-function handleClick(evt) {
+function chipClick(evt) {
     if (evt.target.className === 'chip' && chipTotal > 0){
         betTotal += parseInt(evt.target.innerText);
         chipTotal -= parseInt(evt.target.innerText);
         console.log(evt.target.innerText);
         render();
-    } else {
-        alert('Exceeded maxiumum chip count');
-    }
-   
+    } else if (evt.target.className === 'chip'){
+     }
     render();
 }
+
+
+function betClick(evt){
+    console.log(evt.target);
+}
+
 function betChips(){
 
 }
@@ -45,7 +50,7 @@ function render(){
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
     document.getElementById('betDisplay').innerText = '$ ' + betTotal;
-    
+
 }
 
 function dimChips(){
