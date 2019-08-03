@@ -1,6 +1,15 @@
 /*-------Constants-------*/
 const sideObj = {
-    
+    any7: {multiplier:4, currentBet:0, winnerIf:7},
+    hard4: {multiplier:7, currentBet:0, winnerIf:4},
+    hard10: {multiplier:7, currentBet:0, winnerIf:10},
+    hard6: {multiplier:9, currentBet:0, winnerIf:6},
+    hard8: {multiplier:9, currentBet:0, winnerIf:8},
+    any3: {multiplier:15, currentBet:0, winnerIf:3},
+    any11: {multiplier:15, currentBet:0, winnerIf:11},
+    any2: {multiplier:30, currentBet:0, winnerIf:2},
+    any12: {multiplier:30, currentBet:0, winnerIf:12},
+    anyCraps: {multiplier:7, currentBet:0, winnerIf:2}
 }
 
 const centerObj = {
