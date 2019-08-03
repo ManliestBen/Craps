@@ -4,14 +4,16 @@ html, * {
 }
 
 body {
-    height: 80vh;
+    /* height: 100vh; */
     display: grid;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }
 
 main {
+    
+    height: auto;
     display: grid;
     grid-template-columns: 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
     grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
@@ -83,12 +85,19 @@ div {
     font-size: 3vmin;
 }
 
-section {
-    display: flex;
+section.bottomRow {
+    display: grid;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* height: 20vh; */
+    /* flex-wrap: wrap; */
+    grid-template-columns: 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh 7vh;
+    grid-template-rows: 10vh 10vh;
 }
 
 .chip {
     display: flex;
+    /* flex-direction: row; */
     border-radius: 50%;
     height: 5vmin;
     width: 5vmin;
@@ -99,5 +108,6 @@ section {
 .bottomRow {
     align-items: center;
     height: 5vmin;
-    margin: auto;
+    /* margin: auto; */
+    
 }
