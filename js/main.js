@@ -1,9 +1,19 @@
 /*-------Constants-------*/
+const sideObj = {
+    
+}
 
+const centerObj = {
+
+}
+
+const pointObj = {
+
+}
 
 
 /*-------State Variables-------*/
-let chipTotal, betTotal;
+let chipTotal, betTotal, payout;
 
 
 /*-------Cached Element References-------*/
