@@ -22,7 +22,7 @@ const pointObj = {
 
 
 /*-------State Variables-------*/
-let chipTotal, betTotal, payout;
+let chipTotal, betTotal, payout, die1, die2;
 
 
 /*-------Cached Element References-------*/
