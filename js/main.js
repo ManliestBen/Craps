@@ -1,6 +1,7 @@
 /*-------State Variables-------*/
 let chipTotal, betTotal, point, die1Num, die1Text, die2Num, die2Text;
 let payout = 0;
+let pointActive = 0  // 0 means no point is active, otherwise set to the value of point
 
 
 /*-------Constants-------*/
@@ -18,10 +19,10 @@ const sideObj = {
 }
 
 const centerObj = {
-    passLine: {multiplier:1, currentBet:0, winnerIf:1, isPointActive:0},
-    dontPass: {multiplier:1, currentBet:0, winnerIf:1, isPointActive:0},
-    fieldBottom: {multiplier:1, currentBet:0, winnerIf:1, isPointActive:0},
-    come: {multiplier:1, currentBet:0, winnerIf:1, isPointActive:0}
+    passLine: {multiplier:1, currentBet:0, winnerIf:1},
+    dontPass: {multiplier:1, currentBet:0, winnerIf:1},
+    fieldBottom: {multiplier:1, currentBet:0, winnerIf:1},
+    come: {multiplier:1, currentBet:0, winnerIf:1}
 }
 
 const pointObj = {
@@ -147,6 +148,15 @@ function payBets(){
         if (sideObj[bet].currentBet > 0 && (sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num === die2Num) && sideObj[bet].dieSpecific === 1) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
         };
+    }
+    for (bet in centerObj){
+        // if point is active and the roll is not the point, pay the center object
+        // if point is active and the roll is a 7, clear the board
+        // if point is rolled, payout and deactive point
+        // if point is not active and roll is 7 or 11, pay pass line, clear the don't pass line
+        // if point is not active and roll is a 2, 3, or 12, pay don't pass line, clear the pass line
+        // if point is not active, activate point
+
     }
     chipTotal += payout;
     payout = 0;
