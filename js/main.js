@@ -1,17 +1,15 @@
 /*-------Constants-------*/
 const sideObj = {
-    any7: {multiplier:4, currentBet:0, winnerIf:7},
-    hard4: {multiplier:7, currentBet:0, winnerIf:4},
-    hard10: {multiplier:7, currentBet:0, winnerIf:10},
-    hard6: {multiplier:9, currentBet:0, winnerIf:6},
-    hard8: {multiplier:9, currentBet:0, winnerIf:8},
-    any3: {multiplier:15, currentBet:0, winnerIf:3},
-    any11: {multiplier:15, currentBet:0, winnerIf:11},
-    any2: {multiplier:30, currentBet:0, winnerIf:2},
-    any12: {multiplier:30, currentBet:0, winnerIf:12},
-    anyCraps2: {multiplier:7, currentBet:0, winnerIf:2},
-    anyCraps3: {multiplier:7, currentBet:0, winnerIf:3},
-    anyCraps12: {multiplier:7, currentBet:0, winnerIf:12}
+    anySeven: {multiplier:4, currentBet:0, winnerIf:7},
+    hardFour: {multiplier:7, currentBet:0, winnerIf:4},
+    hardTen: {multiplier:7, currentBet:0, winnerIf:10},
+    hardSix: {multiplier:9, currentBet:0, winnerIf:6},
+    hardEight: {multiplier:9, currentBet:0, winnerIf:8},
+    anyThree: {multiplier:15, currentBet:0, winnerIf:3},
+    anyEleven: {multiplier:15, currentBet:0, winnerIf:11},
+    anyTwo: {multiplier:30, currentBet:0, winnerIf:2},
+    anyTwelve: {multiplier:30, currentBet:0, winnerIf:12},
+    anyCraps: {multiplier:7, currentBet:0, winnerIf:2/3/12}
 }
 
 const centerObj = {
@@ -78,11 +76,32 @@ function chipClick(evt) {
 
 function betClick(evt){
     if (evt.target.className === 'pointRow'){
-
+        for (type in pointObj){
+            if (type === evt.target.id) {
+                console.log(evt.target.id);
+                pointObj[type].currentBet = betTotal;
+                betTotal = 0;
+                render();
+            };
+        }
     } else if (evt.target.className === 'sideBet') {
-
+        for (type in sideObj){
+            if (type === evt.target.id) {
+                console.log(evt.target.id);
+                sideObj[type].currentBet = betTotal;
+                betTotal = 0;
+                render();
+            };
+        }
     } else if (evt.target.className === 'center') {
-    
+        for (type in centerObj){
+            if (type === evt.target.id) {
+                console.log(evt.target.id);
+                centerObj[type].currentBet = betTotal;
+                betTotal = 0;
+                render();
+            };
+        }
     }
 }
 
