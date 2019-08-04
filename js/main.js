@@ -9,15 +9,26 @@ const sideObj = {
     any11: {multiplier:15, currentBet:0, winnerIf:11},
     any2: {multiplier:30, currentBet:0, winnerIf:2},
     any12: {multiplier:30, currentBet:0, winnerIf:12},
-    anyCraps: {multiplier:7, currentBet:0, winnerIf:2}
+    anyCraps2: {multiplier:7, currentBet:0, winnerIf:2},
+    anyCraps3: {multiplier:7, currentBet:0, winnerIf:3},
+    anyCraps12: {multiplier:7, currentBet:0, winnerIf:12}
 }
 
 const centerObj = {
-
+    passLine: {multiplier:1, currentBet:0, winnerIf:1},
+    dontPass: {multiplier:1, currentBet:0, winnerIf:1},
+    fieldBottom: {multiplier:1, currentBet:0, winnerIf:1},
+    come: {multiplier:1, currentBet:0, winnerIf:1}
 }
 
 const pointObj = {
-
+    dontCome: {multiplier:1, currentBet:0, winnerIf:1},
+    point4: {multiplier:(9/5), currentBet:0, winnerIf:4},
+    point5: {multiplier:(7/5), currentBet:0, winnerIf:5},
+    point6: {multiplier:(7/6), currentBet:0, winnerIf:6},
+    point8: {multiplier:(7/6), currentBet:0, winnerIf:8},
+    point9: {multiplier:(7/5), currentBet:0, winnerIf:9},
+    point10: {multiplier:(9/5), currentBet:0, winnerIf:10}
 }
 
 
