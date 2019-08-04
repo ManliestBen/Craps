@@ -12,9 +12,9 @@ const sideObj = {
     hardEight: {multiplier:9, currentBet:0, winnerIf:8, dieSpecific: 1},
     anyThree: {multiplier:15, currentBet:0, winnerIf:3, dieSpecific: 0},
     anyEleven: {multiplier:15, currentBet:0, winnerIf:11, dieSpecific: 0},
-    anyTwo: {multiplier:30, currentBet:0, winnerIf:2, dieSpecific: 0},
-    anyTwelve: {multiplier:30, currentBet:0, winnerIf:12, dieSpecific: 0},
-    anyCraps: {multiplier:7, currentBet:0, winnerIf:2/3/12, dieSpecific: 0}
+    anyTwo: {multiplier:30, currentBet:0, winnerIf:2, dieSpecific: 1},
+    anyTwelve: {multiplier:30, currentBet:0, winnerIf:12, dieSpecific: 1},
+    anyCraps: {multiplier:7, currentBet:0, winnerIf:[2, 3, 12], dieSpecific: 0}
 }
 
 const centerObj = {
@@ -139,7 +139,7 @@ function payBets(){
         };
     }
     for (bet in sideObj){
-        if (sideObj[bet].currentBet > 0 && (sideObj[bet].winnerIf === (die1Num + die2Num)) && sideObj[bet].dieSpecific === 0) {
+        if (sideObj[bet].currentBet > 0 && (sideObj[bet].winnerIf === (die1Num + die2Num) || (die1Num + die2Num === 2) || (die1Num + die2Num === 3) || (die1Num + die2Num === 12)) && sideObj[bet].dieSpecific === 0) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
         };
     }
