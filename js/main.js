@@ -1,7 +1,7 @@
 /*-------State Variables-------*/
 let chipTotal, betTotal, point, die1Num, die1Text, die2Num, die2Text;
 let payout = 0;
-let pointActive = 0  // 0 means no point is active, otherwise set to the value of point
+let pointActive = 6;  // 0 means no point is active, otherwise set to the value of point
 
 
 /*-------Constants-------*/
@@ -21,7 +21,7 @@ const sideObj = {
 const centerObj = {
     passLine: {multiplier:1, currentBet:0, winnerIf:1},
     dontPass: {multiplier:1, currentBet:0, winnerIf:1},
-    fieldBottom: {multiplier:1, currentBet:0, winnerIf:1},
+    fieldBottom: {multiplier:1, currentBet:0, winnerIf:[2, 3, 4, 9, 10, 11, 12]},
     come: {multiplier:1, currentBet:0, winnerIf:1}
 }
 
@@ -150,13 +150,40 @@ function payBets(){
         };
     }
     for (bet in centerObj){
+        if (pointActive > 0) {
+            if ((die1Num + die2Num === 7)){
+                for (bet in pointObj){
+                    pointObj[bet].currentBet = 0;
+                }
+                for (bet in sideObj){
+                    if (sideObj.anyCraps.currentBet > 0){
+                    } else {
+                        sideObj[bet].currentBet = 0;
+                    }
+                }
+            } else {
+                for (bet in centerObj){
+                    if (pointActive === (die1Num + die2Num)){
+                        payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
+                        centerObj.dontPass.currentBet = 0;
+                        pointActive = 0;
+                    }
+                    // if (die1Num + die2Num === 10){
+                    //     console.log(centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
+                        // payout = payout + parseInt(centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
+                    // }
+                }
+            }
+            
+            
         // if point is active and the roll is not the point, pay the center object
-        // if point is active and the roll is a 7, clear the board
-        // if point is rolled, payout and deactive point
+        // if point is active and the roll is a 7, clear the board - DONE
+        // if point is rolled, payout and deactive point - DONE
+        } else {
         // if point is not active and roll is 7 or 11, pay pass line, clear the don't pass line
         // if point is not active and roll is a 2, 3, or 12, pay don't pass line, clear the pass line
         // if point is not active, activate point
-
+        }
     }
     chipTotal += payout;
     payout = 0;
