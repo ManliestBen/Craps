@@ -33,7 +33,7 @@ const pointObj = {
 
 
 /*-------State Variables-------*/
-let chipTotal, betTotal, payout, die1, die2;
+let chipTotal, betTotal, payout, die1Num, die1Text, die2Num, die2Text;
 
 
 /*-------Cached Element References-------*/
@@ -87,7 +87,11 @@ function betClick(evt){
 }
 
 function rollDice(){
-    console.log('Rolling dice');
+    die1Num = Math.floor(Math.random()*6) + 1;
+    die2Num =  Math.floor(Math.random()*6) + 1;
+    die1Text = "&#x268" + (die1Num - 1) + " ";
+    die2Text = "&#x268" + (die2Num - 1) + " ";
+    document.getElementById('rolledDice').innerHTML = die1Text + die2Text;
 }
 
 function render(){
