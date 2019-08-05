@@ -160,11 +160,12 @@ function payBets(){
             if ((die1Num +die2Num !== 7)) {
                 for (bet in centerObj){
                     // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.
-                    if (pointActive === (die1Num + die2Num)){
-                        payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
-                        centerObj.dontPass.currentBet = 0;
-                        pointActive = 0;
-                    }
+                    // if (pointActive === (die1Num + die2Num)){
+                    //     payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
+                    //     centerObj.dontPass.currentBet = 0;
+                    //     pointActive = 0;
+                    // }
+                    
                 }
             }
             // Clears the board (except the 'any craps' field) if a 7 is rolled while the point is active.
@@ -178,9 +179,15 @@ function payBets(){
                         sideObj[bet].currentBet = 0;
                     }
                 }
+                // Pays the don't pass line on a roll of 7 while point is active
+                for (bet in centerObj){
+                    payout = payout + parseInt(centerObj.dontPass.multiplier * centerObj.dontPass.currentBet);
+                }
             pointActive = 0;
             } 
-    }     
+    }
+     
+        
         // if point is active and the roll is not the point, pay the center object
         // if point is active and the roll is a 7, clear the board - DONE
         // if point is rolled, payout and deactive point - DONE
@@ -190,8 +197,14 @@ function payBets(){
         // if point is not active, activate point
         
     
+    
+    }
+    
+    // Pays the field
+    if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
+        console.log('It is in there!!!');
+    }
     chipTotal += payout;
     payout = 0;
-    render();
-    }
+    render(); 
 }
