@@ -121,7 +121,6 @@ function render(){
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
     document.getElementById('betDisplay').innerText = '$ ' + betTotal;
-
 }
 
 function dimChips(){
@@ -134,6 +133,7 @@ function dimChips(){
 }
 
 function payBets(){
+    
     // Payout if current point is rolled.
     for (bet in pointObj){
         if (pointObj[bet].currentBet > 0 && ((die1Num + die2Num) === pointObj[bet].winnerIf)) {
@@ -155,9 +155,10 @@ function payBets(){
             sideObj[bet].currentBet = 0;
         }
     }
-    // Clears the board (except the 'any craps' field) if a 7 is rolled while the point is active.
+    
     for (bet in centerObj){
         if (pointActive > 0) {
+            // Clears the board (except the 'any craps' field) if a 7 is rolled while the point is active.
             if ((die1Num + die2Num === 7)){
                 for (bet in pointObj){
                     pointObj[bet].currentBet = 0;
@@ -170,6 +171,7 @@ function payBets(){
                 }
             } else {
                 for (bet in centerObj){
+                    // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.
                     if (pointActive === (die1Num + die2Num)){
                         payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
                         centerObj.dontPass.currentBet = 0;
@@ -178,16 +180,17 @@ function payBets(){
                 }
             }
             
-            
+        }   
+    }     
         // if point is active and the roll is not the point, pay the center object
         // if point is active and the roll is a 7, clear the board - DONE
         // if point is rolled, payout and deactive point - DONE
-        } else {
+         
         // if point is not active and roll is 7 or 11, pay pass line, clear the don't pass line
         // if point is not active and roll is a 2, 3, or 12, pay don't pass line, clear the pass line
         // if point is not active, activate point
-        }
-    }
+        
+    
     chipTotal += payout;
     payout = 0;
     render();
