@@ -137,22 +137,21 @@ function payBets(){
     if (pointActive > 0){
     // Payout if current point is rolled.
     for (bet in pointObj){
-        if (pointObj[bet].currentBet > 0 && ((die1Num + die2Num) === pointObj[bet].winnerIf)) {
+        if (((die1Num + die2Num) === pointObj[bet].winnerIf)) {
             payout = payout + parseInt(pointObj[bet].multiplier * pointObj[bet].currentBet);
-            pointActive = 0;
-        };
+        }
     }
     // Payout side bet "any craps"
     for (bet in sideObj){
-        if (sideObj[bet].currentBet > 0 && (sideObj[bet].winnerIf === (die1Num + die2Num) || (die1Num + die2Num === 2) || (die1Num + die2Num === 3) || (die1Num + die2Num === 12)) && sideObj[bet].dieSpecific === 0) {
+        if ((sideObj[bet].winnerIf === (die1Num + die2Num) || (die1Num + die2Num === 2) || (die1Num + die2Num === 3) || (die1Num + die2Num === 12)) && sideObj[bet].dieSpecific === 0) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
         } 
     }
     // Payout for hard-ways, removing bet if 'soft' number is rolled first.
     for (bet in sideObj){
-        if (sideObj[bet].currentBet > 0 && (sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num === die2Num) && sideObj[bet].dieSpecific === 1) {
+        if ((sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num === die2Num) && sideObj[bet].dieSpecific === 1) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
-        } if (sideObj[bet].currentBet > 0 && (sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num !== die2Num)) {
+        } if ((sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num !== die2Num)) {
             sideObj[bet].currentBet = 0;
         }
     }
@@ -160,11 +159,11 @@ function payBets(){
             if ((die1Num +die2Num !== 7)) {
                 for (bet in centerObj){
                     // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.
-                    // if (pointActive === (die1Num + die2Num)){
-                    //     payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
-                    //     centerObj.dontPass.currentBet = 0;
-                    //     pointActive = 0;
-                    // }
+                    if (pointActive === (die1Num + die2Num)){
+                        payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
+                        centerObj.dontPass.currentBet = 0;
+                        pointActive = 0;
+                    }
                     
                 }
             }
@@ -186,21 +185,21 @@ function payBets(){
             pointActive = 0;
             } 
     }
-     
         
-        // if point is active and the roll is not the point, pay the center object
-        // if point is active and the roll is a 7, clear the board - DONE
-        // if point is rolled, payout and deactive point - DONE
-         
+    }
+
+    if (pointActive === 0) {
+        if (die1Num + die2Num === 7 || die1Num + die2Num === 11){
+            payout = payout + centerObj.passLine.currentBet;
+            console.log("WINNAH WINNAH, CHICKEN DINNAH!!!")
+        }
+        
         // if point is not active and roll is 7 or 11, pay pass line, clear the don't pass line
         // if point is not active and roll is a 2, 3, or 12, pay don't pass line, clear the pass line
         // if point is not active, activate point
-        
-    
-    
     }
     
-    // Pays the field
+    // Pays the field, clears bet if not a win
     if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
         if (die1Num + die2Num === 12 || die1Num + die2Num === 2){
         payout = payout + (centerObj.fieldBottom.multiplier * 2 * centerObj.fieldBottom.currentBet);
@@ -208,6 +207,13 @@ function payBets(){
         payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
     } else {
         centerObj.fieldBottom.currentBet = 0;
+    }
+    
+    
+    
+    
+    if (die1Num + die2Num === pointActive){
+        pointActive = 0;
     }
     chipTotal += payout;
     payout = 0;
