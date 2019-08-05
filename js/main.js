@@ -1,8 +1,8 @@
 /*-------State Variables-------*/
 let chipTotal, betTotal, point, die1Num, die1Text, die2Num, die2Text;
 let payout = 0;
-let pointActive = 6;  // 0 means no point is active, otherwise set to the value of point
-let newPointActive;
+let pointActive = 0;  // 0 means no point is active, otherwise set to the value of point
+let newPointActive = 0;
 
 /*-------Constants-------*/
 const sideObj = {
@@ -121,6 +121,8 @@ function render(){
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
     document.getElementById('betDisplay').innerText = '$ ' + betTotal;
+    console.log("current point" + pointActive);
+    console.log("Pass line bet is" + centerObj.passLine.currentBet);
 }
 
 function dimChips(){
@@ -134,6 +136,7 @@ function dimChips(){
 
 function payBets(){
 // Conditions for when a point is active
+    newPointActive = 0;
     if (pointActive > 0){
     // Payout if current point is rolled.
     for (bet in pointObj){
