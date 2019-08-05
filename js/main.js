@@ -2,7 +2,7 @@
 let chipTotal, betTotal, point, die1Num, die1Text, die2Num, die2Text;
 let payout = 0;
 let pointActive = 6;  // 0 means no point is active, otherwise set to the value of point
-
+let newPointActive;
 
 /*-------Constants-------*/
 const sideObj = {
@@ -191,7 +191,16 @@ function payBets(){
     if (pointActive === 0) {
         if (die1Num + die2Num === 7 || die1Num + die2Num === 11){
             payout = payout + centerObj.passLine.currentBet;
+            centerObj.dontPass.currentBet = 0;
             console.log("WINNAH WINNAH, CHICKEN DINNAH!!!")
+        }
+        if (die1Num + die2Num === 2 || die1Num + die2Num === 3 || die1Num + die2Num === 12){
+            payout = payout + centerObj.dontPass.currentBet;
+            centerObj.passLine.currentBet = 0;
+            console.log("CRAPPY CRAP CRAPS!!!");
+        }
+        if (die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10){
+            newPointActive = (die1Num + die2Num);
         }
         
         // if point is not active and roll is 7 or 11, pay pass line, clear the don't pass line
@@ -209,13 +218,13 @@ function payBets(){
         centerObj.fieldBottom.currentBet = 0;
     }
     
-    
-    
-    
+        
     if (die1Num + die2Num === pointActive){
         pointActive = 0;
     }
+
     chipTotal += payout;
     payout = 0;
+    pointActive = newPointActive;
     render(); 
 }
