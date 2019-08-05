@@ -133,7 +133,8 @@ function dimChips(){
 }
 
 function payBets(){
-    
+// Conditions for when a point is active
+    if (pointActive > 0){
     // Payout if current point is rolled.
     for (bet in pointObj){
         if (pointObj[bet].currentBet > 0 && ((die1Num + die2Num) === pointObj[bet].winnerIf)) {
@@ -155,9 +156,17 @@ function payBets(){
             sideObj[bet].currentBet = 0;
         }
     }
-    
     for (bet in centerObj){
-        if (pointActive > 0) {
+            if ((die1Num +die2Num !== 7)) {
+                for (bet in centerObj){
+                    // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.
+                    if (pointActive === (die1Num + die2Num)){
+                        payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
+                        centerObj.dontPass.currentBet = 0;
+                        pointActive = 0;
+                    }
+                }
+            }
             // Clears the board (except the 'any craps' field) if a 7 is rolled while the point is active.
             if ((die1Num + die2Num === 7)){
                 for (bet in pointObj){
@@ -169,18 +178,8 @@ function payBets(){
                         sideObj[bet].currentBet = 0;
                     }
                 }
-            } else {
-                for (bet in centerObj){
-                    // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.
-                    if (pointActive === (die1Num + die2Num)){
-                        payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
-                        centerObj.dontPass.currentBet = 0;
-                        pointActive = 0;
-                    }
-                }
-            }
-            
-        }   
+            pointActive = 0;
+            } 
     }     
         // if point is active and the roll is not the point, pay the center object
         // if point is active and the roll is a 7, clear the board - DONE
@@ -194,4 +193,5 @@ function payBets(){
     chipTotal += payout;
     payout = 0;
     render();
+    }
 }
