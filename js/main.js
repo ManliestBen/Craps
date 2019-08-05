@@ -202,7 +202,12 @@ function payBets(){
     
     // Pays the field
     if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
-        console.log('It is in there!!!');
+        if (die1Num + die2Num === 12 || die1Num + die2Num === 2){
+        payout = payout + (centerObj.fieldBottom.multiplier * 2 * centerObj.fieldBottom.currentBet);
+        }
+        payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
+    } else {
+        centerObj.fieldBottom.currentBet = 0;
     }
     chipTotal += payout;
     payout = 0;
