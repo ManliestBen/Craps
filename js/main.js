@@ -168,10 +168,6 @@ function payBets(){
                         centerObj.dontPass.currentBet = 0;
                         pointActive = 0;
                     }
-                    // if (die1Num + die2Num === 10){
-                    //     console.log(centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
-                        // payout = payout + parseInt(centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
-                    // }
                 }
             }
             
