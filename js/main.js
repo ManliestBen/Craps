@@ -134,17 +134,20 @@ function dimChips(){
 }
 
 function payBets(){
+    // Payout if current point is rolled.
     for (bet in pointObj){
         if (pointObj[bet].currentBet > 0 && ((die1Num + die2Num) === pointObj[bet].winnerIf)) {
             payout = payout + parseInt(pointObj[bet].multiplier * pointObj[bet].currentBet);
             pointActive = 0;
         };
     }
+    // Payout side bet "any craps"
     for (bet in sideObj){
         if (sideObj[bet].currentBet > 0 && (sideObj[bet].winnerIf === (die1Num + die2Num) || (die1Num + die2Num === 2) || (die1Num + die2Num === 3) || (die1Num + die2Num === 12)) && sideObj[bet].dieSpecific === 0) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
         } 
     }
+    // Payout for hard-ways, removing bet if 'soft' number is rolled first.
     for (bet in sideObj){
         if (sideObj[bet].currentBet > 0 && (sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num === die2Num) && sideObj[bet].dieSpecific === 1) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
@@ -152,6 +155,7 @@ function payBets(){
             sideObj[bet].currentBet = 0;
         }
     }
+    // Clears the board (except the 'any craps' field) if a 7 is rolled while the point is active.
     for (bet in centerObj){
         if (pointActive > 0) {
             if ((die1Num + die2Num === 7)){
