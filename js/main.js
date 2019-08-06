@@ -6,33 +6,33 @@ let newPointActive = 0;
 
 /*-------Constants-------*/
 const sideObj = {
-    anySeven: {multiplier:4, currentBet:0, winnerIf:7, dieSpecific: 0},
-    hardFour: {multiplier:7, currentBet:0, winnerIf:4, dieSpecific: 1},
-    hardTen: {multiplier:7, currentBet:0, winnerIf:10, dieSpecific: 1},
-    hardSix: {multiplier:9, currentBet:0, winnerIf:6, dieSpecific: 1},
-    hardEight: {multiplier:9, currentBet:0, winnerIf:8, dieSpecific: 1},
-    anyThree: {multiplier:15, currentBet:0, winnerIf:3, dieSpecific: 0},
-    anyEleven: {multiplier:15, currentBet:0, winnerIf:11, dieSpecific: 0},
-    anyTwo: {multiplier:30, currentBet:0, winnerIf:2, dieSpecific: 1},
-    anyTwelve: {multiplier:30, currentBet:0, winnerIf:12, dieSpecific: 1},
-    anyCraps: {multiplier:7, currentBet:0, winnerIf:[2, 3, 12], dieSpecific: 0}
+    anySeven: {reverseName: "neveSyna", multiplier:4, currentBet:0, winnerIf:7, dieSpecific: 0},
+    hardFour: {reverseName: "ruoFdrah", multiplier:7, currentBet:0, winnerIf:4, dieSpecific: 1},
+    hardTen: {reverseName: "neTdrah", multiplier:7, currentBet:0, winnerIf:10, dieSpecific: 1},
+    hardSix: {reverseName: "xiSdrah", multiplier:9, currentBet:0, winnerIf:6, dieSpecific: 1},
+    hardEight: {reverseName: "thgiEdrah", multiplier:9, currentBet:0, winnerIf:8, dieSpecific: 1},
+    anyThree: {reverseName: "eerhTyna", multiplier:15, currentBet:0, winnerIf:3, dieSpecific: 0},
+    anyEleven: {reverseName: "nevelEyna", multiplier:15, currentBet:0, winnerIf:11, dieSpecific: 0},
+    anyTwo: {reverseName: "owTyna", multiplier:30, currentBet:0, winnerIf:2, dieSpecific: 1},
+    anyTwelve: {reverseName: "evlewTyna", multiplier:30, currentBet:0, winnerIf:12, dieSpecific: 1},
+    anyCraps: {reverseName: "sparCyna", multiplier:7, currentBet:0, winnerIf:[2, 3, 12], dieSpecific: 0}
 }
 
 const centerObj = {
-    passLine: {multiplier:1, currentBet:0, winnerIf:1},
-    dontPass: {multiplier:1, currentBet:0, winnerIf:1},
-    fieldBottom: {multiplier:1, currentBet:0, winnerIf:[2, 3, 4, 9, 10, 11, 12]},
-    come: {multiplier:1, currentBet:0, winnerIf:1}
+    passLine: {reverseName: "eniLssap", multiplier:1, currentBet:0, winnerIf:1},
+    dontPass: {reverseName: "ssaPtnod", multiplier:1, currentBet:0, winnerIf:1},
+    fieldBottom: {reverseName: "mottoBdleif", multiplier:1, currentBet:0, winnerIf:[2, 3, 4, 9, 10, 11, 12]},
+    come: {reverseName: "emoc", multiplier:1, currentBet:0, winnerIf:1}
 }
 
 const pointObj = {
-    dontCome: {multiplier:1, currentBet:0, winnerIf:1},
-    point4: {multiplier:(9/5), currentBet:0, winnerIf:4},
-    point5: {multiplier:(7/5), currentBet:0, winnerIf:5},
-    point6: {multiplier:(7/6), currentBet:0, winnerIf:6},
-    point8: {multiplier:(7/6), currentBet:0, winnerIf:8},
-    point9: {multiplier:(7/5), currentBet:0, winnerIf:9},
-    point10: {multiplier:(9/5), currentBet:0, winnerIf:10}
+    dontCome: {reverseName: "emoCtnod", multiplier:1, currentBet:0, winnerIf:1},
+    point4: {reverseName: "4tniop", multiplier:(9/5), currentBet:0, winnerIf:4},
+    point5: {reverseName: "5tniop", multiplier:(7/5), currentBet:0, winnerIf:5},
+    point6: {reverseName: "6tniop", multiplier:(7/6), currentBet:0, winnerIf:6},
+    point8: {reverseName: "8tniop", multiplier:(7/6), currentBet:500, winnerIf:8},
+    point9: {reverseName: "9tniop", multiplier:(7/5), currentBet:0, winnerIf:9},
+    point10: {reverseName: "01tniop", multiplier:(9/5), currentBet:0, winnerIf:10}
 }
 
 
@@ -40,7 +40,32 @@ const pointObj = {
 /*-------Cached Element References-------*/
 
 
-
+function testOutput(){
+    for (each in pointObj){
+        if (pointObj[each].currentBet > 0){
+        console.log((pointObj[each].reverseName));
+        document.getElementById(pointObj[each].reverseName).style.display = 'inline';
+    } else {
+        document.getElementById(pointObj[each].reverseName).style.display = 'none';
+    }
+    }
+    for (each in sideObj){
+        if (sideObj[each].currentBet > 0){
+        console.log((sideObj[each].reverseName));
+        document.getElementById(sideObj[each].reverseName).style.display = 'inline';
+    } else {
+        document.getElementById(sideObj[each].reverseName).style.display = 'none';
+    }
+    }
+    for (each in centerObj){
+        if (centerObj[each].currentBet > 0){
+        console.log((centerObj[each].reverseName));
+        document.getElementById(centerObj[each].reverseName).style.display = 'inline';
+    } else {
+        document.getElementById(centerObj[each].reverseName).style.display = 'none';
+    }
+    }
+}
 
 /*-------Event Listeners-------*/
 document.querySelector('section').addEventListener('click', chipClick);
