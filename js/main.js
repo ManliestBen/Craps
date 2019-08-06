@@ -40,34 +40,6 @@ const pointObj = {
 /*-------Cached Element References-------*/
 
 
-function renderBets(){
-    for (each in pointObj){
-        if (pointObj[each].currentBet > 0){
-        document.getElementById(pointObj[each].reverseName).style.display = 'inline';
-        document.getElementById(pointObj[each].reverseName).innerHTML = (`$${pointObj[each].currentBet} bet on ${pointObj[each].name}`);
-    } else {
-        document.getElementById(pointObj[each].reverseName).style.display = 'none';
-        }
-    }
-    
-    for (each in sideObj){
-        if (sideObj[each].currentBet > 0){
-        document.getElementById(sideObj[each].reverseName).style.display = 'inline';
-        document.getElementById(sideObj[each].reverseName).innerHTML = (`$${sideObj[each].currentBet} bet on ${sideObj[each].name}`);
-    } else {
-        document.getElementById(sideObj[each].reverseName).style.display = 'none';
-        }
-    }
-    
-    for (each in centerObj){
-        if (centerObj[each].currentBet > 0){
-        document.getElementById(centerObj[each].reverseName).style.display = 'inline';
-        document.getElementById(centerObj[each].reverseName).innerHTML = (`$${centerObj[each].currentBet} bet on ${centerObj[each].name}`);
-    } else {
-        document.getElementById(centerObj[each].reverseName).style.display = 'none';
-        }
-    }
-}
 
 /*-------Event Listeners-------*/
 document.querySelector('section').addEventListener('click', chipClick);
@@ -147,18 +119,12 @@ function rollDice(){
 }
 
 function render(){
-    displayPoint();
     renderBets();
+    displayPoint();
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
     document.getElementById('betDisplay').innerText = '$ ' + betTotal;
     
-    
-    
-    // console.log("current point" + pointActive);
-    // console.log("Pass line bet is" + centerObj.passLine.currentBet);
-    
-   
 }
 
 function dimChips(){
@@ -175,8 +141,10 @@ function payBets(){
     if (pointActive > 0){
     // Payout if current point is rolled.
     for (bet in pointObj){
+        // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.
         if (((die1Num + die2Num) === pointObj[bet].winnerIf)) {
             payout = payout + parseInt(pointObj[bet].multiplier * pointObj[bet].currentBet);
+            // pointActive = 0;
         }
     }
     // Payout side bet "any craps"
@@ -194,17 +162,17 @@ function payBets(){
         }
     }
     for (bet in centerObj){
-            if ((die1Num +die2Num !== 7)) {
-                for (bet in centerObj){
-                    // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.
-                    if (pointActive === (die1Num + die2Num)){
-                        payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
-                        centerObj.dontPass.currentBet = 0;
-                        // pointActive = 0;
-                    }
+            // if ((die1Num +die2Num !== 7)) {
+            //     for (bet in centerObj){
                     
-                }
-            }
+            //         if (pointActive === (die1Num + die2Num)){
+            //             payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
+            //             centerObj.dontPass.currentBet = 0;
+            //             // pointActive = 0;
+            //         }
+                    
+            //     }
+            // }
             // Clears the board (except the 'any craps' field) if a 7 is rolled while the point is active.
             if ((die1Num + die2Num === 7)){
                 for (bet in pointObj){
@@ -270,13 +238,44 @@ function payBets(){
     render(); 
 }
 
+function renderBets(){
+    for (each in pointObj){
+        if (pointObj[each].currentBet > 0){
+        document.getElementById(pointObj[each].reverseName).style.display = 'inline';
+        document.getElementById(pointObj[each].reverseName).innerHTML = (`$${pointObj[each].currentBet} bet on ${pointObj[each].name}`);
+    } else {
+        document.getElementById(pointObj[each].reverseName).style.display = 'none';
+        }
+    }
+    
+    for (each in sideObj){
+        if (sideObj[each].currentBet > 0){
+        document.getElementById(sideObj[each].reverseName).style.display = 'inline';
+        document.getElementById(sideObj[each].reverseName).innerHTML = (`$${sideObj[each].currentBet} bet on ${sideObj[each].name}`);
+    } else {
+        document.getElementById(sideObj[each].reverseName).style.display = 'none';
+        }
+    }
+    
+    for (each in centerObj){
+        if (centerObj[each].currentBet > 0){
+        document.getElementById(centerObj[each].reverseName).style.display = 'inline';
+        document.getElementById(centerObj[each].reverseName).innerHTML = (`$${centerObj[each].currentBet} bet on ${centerObj[each].name}`);
+    } else {
+        document.getElementById(centerObj[each].reverseName).style.display = 'none';
+        }
+    }
+}
+
 function displayPoint(){
     for (each in pointObj){
         if (pointActive === pointObj[each].winnerIf){
             document.getElementById(each).style.color = 'red';
+
         } else {
             document.getElementById(each).style.color = 'black';
         }
-        console.log('Point is ' + pointActive);
+        
     }
+    console.log('Point is ' + pointActive);
 }
