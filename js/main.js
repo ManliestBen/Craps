@@ -147,6 +147,7 @@ function rollDice(){
 }
 
 function render(){
+    displayPoint();
     renderBets();
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
@@ -267,4 +268,15 @@ function payBets(){
     chipTotal += payout;
     payout = 0;
     render(); 
+}
+
+function displayPoint(){
+    for (each in pointObj){
+        if (pointActive === pointObj[each].winnerIf){
+            document.getElementById(each).style.color = 'red';
+        } else {
+            document.getElementById(each).style.color = 'black';
+        }
+        console.log('Point is ' + pointActive);
+    }
 }
