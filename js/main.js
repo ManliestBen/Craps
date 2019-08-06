@@ -141,9 +141,10 @@ function payBets(){
     if (pointActive > 0){
     // Payout if current point is rolled.
     for (bet in pointObj){
-        // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.
+        
         if (((die1Num + die2Num) === pointObj[bet].winnerIf)) {
             payout = payout + parseInt(pointObj[bet].multiplier * pointObj[bet].currentBet);
+            
             // pointActive = 0;
         }
     }
@@ -164,7 +165,7 @@ function payBets(){
     for (bet in centerObj){
             // if ((die1Num +die2Num !== 7)) {
             //     for (bet in centerObj){
-                    
+        // If the point is rolled, payout the pass line, clear the don't pass line, and deactivate the point.            
             //         if (pointActive === (die1Num + die2Num)){
             //             payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
             //             centerObj.dontPass.currentBet = 0;
