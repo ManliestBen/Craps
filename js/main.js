@@ -6,33 +6,33 @@ let newPointActive = 0;
 
 /*-------Constants-------*/
 const sideObj = {
-    anySeven: {reverseName: "neveSyna", multiplier:4, currentBet:0, winnerIf:7, dieSpecific: 0},
-    hardFour: {reverseName: "ruoFdrah", multiplier:7, currentBet:0, winnerIf:4, dieSpecific: 1},
-    hardTen: {reverseName: "neTdrah", multiplier:7, currentBet:0, winnerIf:10, dieSpecific: 1},
-    hardSix: {reverseName: "xiSdrah", multiplier:9, currentBet:0, winnerIf:6, dieSpecific: 1},
-    hardEight: {reverseName: "thgiEdrah", multiplier:9, currentBet:0, winnerIf:8, dieSpecific: 1},
-    anyThree: {reverseName: "eerhTyna", multiplier:15, currentBet:0, winnerIf:3, dieSpecific: 0},
-    anyEleven: {reverseName: "nevelEyna", multiplier:15, currentBet:0, winnerIf:11, dieSpecific: 0},
-    anyTwo: {reverseName: "owTyna", multiplier:30, currentBet:0, winnerIf:2, dieSpecific: 1},
-    anyTwelve: {reverseName: "evlewTyna", multiplier:30, currentBet:0, winnerIf:12, dieSpecific: 1},
-    anyCraps: {reverseName: "sparCyna", multiplier:7, currentBet:0, winnerIf:[2, 3, 12], dieSpecific: 0}
+    anySeven: {name: "Any Seven", reverseName: "neveSyna", multiplier:4, currentBet:0, winnerIf:7, dieSpecific: 0},
+    hardFour: {name: "Hard Four", reverseName: "ruoFdrah", multiplier:7, currentBet:0, winnerIf:4, dieSpecific: 1},
+    hardTen: {name: "Hard Ten", reverseName: "neTdrah", multiplier:7, currentBet:0, winnerIf:10, dieSpecific: 1},
+    hardSix: {name: "Hard Six", reverseName: "xiSdrah", multiplier:9, currentBet:0, winnerIf:6, dieSpecific: 1},
+    hardEight: {name: "Hard Eight", reverseName: "thgiEdrah", multiplier:9, currentBet:0, winnerIf:8, dieSpecific: 1},
+    anyThree: {name: "Any Three", reverseName: "eerhTyna", multiplier:15, currentBet:0, winnerIf:3, dieSpecific: 0},
+    anyEleven: {name: "Any Eleven", reverseName: "nevelEyna", multiplier:15, currentBet:0, winnerIf:11, dieSpecific: 0},
+    anyTwo: {name: "Any Two", reverseName: "owTyna", multiplier:30, currentBet:0, winnerIf:2, dieSpecific: 1},
+    anyTwelve: {name: "Any Twelve", reverseName: "evlewTyna", multiplier:30, currentBet:0, winnerIf:12, dieSpecific: 1},
+    anyCraps: {name: "Any Craps", reverseName: "sparCyna", multiplier:7, currentBet:0, winnerIf:[2, 3, 12], dieSpecific: 0}
 }
 
 const centerObj = {
-    passLine: {reverseName: "eniLssap", multiplier:1, currentBet:0, winnerIf:1},
-    dontPass: {reverseName: "ssaPtnod", multiplier:1, currentBet:0, winnerIf:1},
-    fieldBottom: {reverseName: "mottoBdleif", multiplier:1, currentBet:0, winnerIf:[2, 3, 4, 9, 10, 11, 12]},
-    come: {reverseName: "emoc", multiplier:1, currentBet:0, winnerIf:1}
+    passLine: {name: "Pass Line", reverseName: "eniLssap", multiplier:1, currentBet:0, winnerIf:1},
+    dontPass: {name: "Don't Pass", reverseName: "ssaPtnod", multiplier:1, currentBet:0, winnerIf:1},
+    fieldBottom: {name: "Field", reverseName: "mottoBdleif", multiplier:1, currentBet:0, winnerIf:[2, 3, 4, 9, 10, 11, 12]},
+    come: {name: "Come", reverseName: "emoc", multiplier:1, currentBet:0, winnerIf:1}
 }
 
 const pointObj = {
-    dontCome: {reverseName: "emoCtnod", multiplier:1, currentBet:0, winnerIf:1},
-    point4: {reverseName: "4tniop", multiplier:(9/5), currentBet:0, winnerIf:4},
-    point5: {reverseName: "5tniop", multiplier:(7/5), currentBet:0, winnerIf:5},
-    point6: {reverseName: "6tniop", multiplier:(7/6), currentBet:0, winnerIf:6},
-    point8: {reverseName: "8tniop", multiplier:(7/6), currentBet:500, winnerIf:8},
-    point9: {reverseName: "9tniop", multiplier:(7/5), currentBet:0, winnerIf:9},
-    point10: {reverseName: "01tniop", multiplier:(9/5), currentBet:0, winnerIf:10}
+    dontCome: {name: "Don't Come", reverseName: "emoCtnod", multiplier:1, currentBet:0, winnerIf:1},
+    point4: {name: "4", reverseName: "4tniop", multiplier:(9/5), currentBet:0, winnerIf:4},
+    point5: {name: "5", reverseName: "5tniop", multiplier:(7/5), currentBet:0, winnerIf:5},
+    point6: {name: "6", reverseName: "6tniop", multiplier:(7/6), currentBet:0, winnerIf:6},
+    point8: {name: "8", reverseName: "8tniop", multiplier:(7/6), currentBet:0, winnerIf:8},
+    point9: {name: "9", reverseName: "9tniop", multiplier:(7/5), currentBet:0, winnerIf:9},
+    point10: {name: "10", reverseName: "01tniop", multiplier:(9/5), currentBet:0, winnerIf:10}
 }
 
 
@@ -40,30 +40,32 @@ const pointObj = {
 /*-------Cached Element References-------*/
 
 
-function testOutput(){
+function renderBets(){
     for (each in pointObj){
         if (pointObj[each].currentBet > 0){
-        console.log((pointObj[each].reverseName));
         document.getElementById(pointObj[each].reverseName).style.display = 'inline';
+        document.getElementById(pointObj[each].reverseName).innerHTML = (`$${pointObj[each].currentBet} bet on ${pointObj[each].name}`);
     } else {
         document.getElementById(pointObj[each].reverseName).style.display = 'none';
+        }
     }
-    }
+    
     for (each in sideObj){
         if (sideObj[each].currentBet > 0){
-        console.log((sideObj[each].reverseName));
         document.getElementById(sideObj[each].reverseName).style.display = 'inline';
+        document.getElementById(sideObj[each].reverseName).innerHTML = (`$${sideObj[each].currentBet} bet on ${sideObj[each].name}`);
     } else {
         document.getElementById(sideObj[each].reverseName).style.display = 'none';
+        }
     }
-    }
+    
     for (each in centerObj){
         if (centerObj[each].currentBet > 0){
-        console.log((centerObj[each].reverseName));
         document.getElementById(centerObj[each].reverseName).style.display = 'inline';
+        document.getElementById(centerObj[each].reverseName).innerHTML = (`$${centerObj[each].currentBet} bet on ${centerObj[each].name}`);
     } else {
         document.getElementById(centerObj[each].reverseName).style.display = 'none';
-    }
+        }
     }
 }
 
@@ -132,7 +134,7 @@ function betClick(evt){
         }
     }
 render()
-renderBet()
+
 }
 
 function rollDice(){
@@ -145,7 +147,7 @@ function rollDice(){
 }
 
 function render(){
-    
+    renderBets();
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
     document.getElementById('betDisplay').innerText = '$ ' + betTotal;
