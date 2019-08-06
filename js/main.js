@@ -82,30 +82,32 @@ function betClick(evt){
         for (type in pointObj){
             if (type === evt.target.id) {
                 console.log(evt.target.id);
-                pointObj[type].currentBet = betTotal;
+                pointObj[type].currentBet += betTotal;
                 betTotal = 0;
-                render();
+                
             };
         }
     } else if (evt.target.className === 'sideBet') {
         for (type in sideObj){
             if (type === evt.target.id) {
                 console.log(evt.target.id);
-                sideObj[type].currentBet = betTotal;
+                sideObj[type].currentBet += betTotal;
                 betTotal = 0;
-                render();
+                
             };
         }
     } else if (evt.target.className === 'center') {
         for (type in centerObj){
             if (type === evt.target.id) {
                 console.log(evt.target.id);
-                centerObj[type].currentBet = betTotal;
+                centerObj[type].currentBet += betTotal;
                 betTotal = 0;
-                render();
+                
             };
         }
     }
+render()
+renderBet()
 }
 
 function rollDice(){
@@ -118,11 +120,13 @@ function rollDice(){
 }
 
 function render(){
+    
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
     document.getElementById('betDisplay').innerText = '$ ' + betTotal;
-    console.log("current point" + pointActive);
-    console.log("Pass line bet is" + centerObj.passLine.currentBet);
+    // console.log("current point" + pointActive);
+    // console.log("Pass line bet is" + centerObj.passLine.currentBet);
+    
     
     
     // var addBetToList = document.createElement("li");
@@ -134,6 +138,22 @@ function render(){
     //     }
 }
 
+function renderBet(){
+    
+    for (bet in pointObj){
+        if (pointObj[bet].currentBet > 0) {
+            var addBetToList = document.createElement("li");
+            var textNode;
+            textNode = document.createTextNode(`$ ${pointObj[bet].currentBet} bet on ${pointObj[bet].winnerIf}`);
+            addBetToList.appendChild(textNode);
+            document.getElementById("betList").appendChild(textNode);
+            // addBetToList.removeChild(textNode);
+            console.log(textNode);
+            console.log(addBetToList);
+        };
+        
+    }
+}
 function dimChips(){
     document.getElementById('chip1000').style.visibility= ((chipTotal < 1000) ? 'hidden' : 'visible');
     document.getElementById('chip500').style.visibility= ((chipTotal < 500) ? 'hidden' : 'visible');
@@ -240,6 +260,5 @@ function payBets(){
     
     chipTotal += payout;
     payout = 0;
-    // pointActive = newPointActive;
     render(); 
 }
