@@ -146,10 +146,10 @@ function renderBet(){
             var textNode;
             textNode = document.createTextNode(`$ ${pointObj[bet].currentBet} bet on ${pointObj[bet].winnerIf}`);
             addBetToList.appendChild(textNode);
-            document.getElementById("betList").appendChild(textNode);
+            document.getElementById("betList").appendChild(addBetToList);
             // addBetToList.removeChild(textNode);
             console.log(textNode);
-            console.log(addBetToList);
+            console.log("Bet list console " + addBetToList);
         };
         
     }
