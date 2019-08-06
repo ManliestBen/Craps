@@ -137,28 +137,30 @@ function dimChips(){
 }
 function payBets(){
 // Conditions for when a point is active
-    // newPointActive = 0;
     if (pointActive > 0){
-    // Payout if current point is rolled.
+    
+    // Payout if current point (that is NOT the active point) is rolled.
     for (bet in pointObj){
-        
         if (((die1Num + die2Num) === pointObj[bet].winnerIf)) {
             payout = payout + parseInt(pointObj[bet].multiplier * pointObj[bet].currentBet);
-            
-            // pointActive = 0;
+            console.log('Paid out a point (non-active) bet of $' + payout);
         }
     }
+    
     // Payout side bet "any craps"
     for (bet in sideObj){
         if ((sideObj[bet].winnerIf === (die1Num + die2Num) || (die1Num + die2Num === 2) || (die1Num + die2Num === 3) || (die1Num + die2Num === 12)) && sideObj[bet].dieSpecific === 0) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
+            console.log('Paid out an Any Craps bet of $' + payout);
         } 
     }
     // Payout for hard-ways, removing bet if 'soft' number is rolled first.
     for (bet in sideObj){
         if ((sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num === die2Num) && sideObj[bet].dieSpecific === 1) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
+            console.log('Paid out a hard ways bet of $' + payout);
         } if ((sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num !== die2Num)) {
+            console.log('Lost hard way bet');
             sideObj[bet].currentBet = 0;
         }
     }
@@ -177,19 +179,25 @@ function payBets(){
             // Clears the board (except the 'any craps' field) if a 7 is rolled while the point is active.
             if ((die1Num + die2Num === 7)){
                 for (bet in pointObj){
+                    console.log('Rolled a 7, removed all active point bets');
                     pointObj[bet].currentBet = 0;
                 }
                 for (bet in sideObj){
-                    if (sideObj.anyCraps.currentBet > 0){
+                    if (sideObj.anySeven.currentBet > 0){
+                        
+                        payout = payout + sideObj.anySeven.currentBet;
+                        console.log('Paid out Any Seven bet of $' + payout);
                     } else {
                         sideObj[bet].currentBet = 0;
                     }
                 }
                 // Pays the don't pass line on a roll of 7 while point is active
                 for (bet in centerObj){
+                    console.log('Paid out a dont pass line bet of $' + payout);
                     payout = payout + parseInt(centerObj.dontPass.multiplier * centerObj.dontPass.currentBet);
                     centerObj.passLine.currentBet = 0;
                 }
+            console.log('Resetting point to zero on a 7 roll');    
             pointActive = 0;
             } 
     }
@@ -197,15 +205,18 @@ function payBets(){
     }
 
     if (pointActive === 0) {
-        if (die1Num + die2Num === 7 || die1Num + die2Num === 11){
+        if (((die1Num + die2Num) === 7) || ((die1Num + die2Num) === 11)){
             payout = payout + centerObj.passLine.currentBet;
+            console.log("Seven or eleven rolled while no point active.  Paid out $ " + payout);
+            
             centerObj.dontPass.currentBet = 0;
-            console.log("WINNAH WINNAH, CHICKEN DINNAH!!!")
+            
         }
-        if (die1Num + die2Num === 2 || die1Num + die2Num === 3 || die1Num + die2Num === 12){
+        if (((die1Num + die2Num) === 2) || ((die1Num + die2Num) === 3) || ((die1Num + die2Num) === 12)){
+            console.log("Two, Three, or Twelve rolled.  Removed pass line bet");
             payout = payout + centerObj.dontPass.currentBet;
             centerObj.passLine.currentBet = 0;
-            console.log("CRAPPY CRAP CRAPS!!!");
+            
         }
         // if (die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10){
         //     newPointActive = (die1Num + die2Num);
@@ -219,11 +230,12 @@ function payBets(){
     // Pays the field, clears bet if not a win
     if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
         if (die1Num + die2Num === 12 || die1Num + die2Num === 2){
-        payout = payout + (centerObj.fieldBottom.multiplier * 2 * centerObj.fieldBottom.currentBet);
-        }
-        payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
-    } else {
-        centerObj.fieldBottom.currentBet = 0;
+            console.log("Paid out double value field bet for a 2 or 12 for $" + payout);
+            payout = payout + (centerObj.fieldBottom.multiplier * 2 * centerObj.fieldBottom.currentBet);
+        } else {
+            console.log("Paid out a field bet of $" + payout);
+            payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
+        } 
     }
     
         
@@ -231,6 +243,7 @@ function payBets(){
     //     pointActive = 0;
     // }
     if (pointActive === 0 && (die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10)){
+        console.log('Setting point to ' + pointActive);
         pointActive = (die1Num + die2Num);
     }
     
