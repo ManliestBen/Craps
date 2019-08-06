@@ -124,6 +124,9 @@ function render(){
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
     document.getElementById('betDisplay').innerText = '$ ' + betTotal;
+    
+    
+    
     // console.log("current point" + pointActive);
     // console.log("Pass line bet is" + centerObj.passLine.currentBet);
     

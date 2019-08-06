@@ -238,7 +238,7 @@ section.bottomRow {
     border: 1px solid black;
 }
 ul {
-    font-size: 2.2vh;
+    font-size: 2.5vh;
     flex-direction: column;
     margin-left: -40px;
 }
