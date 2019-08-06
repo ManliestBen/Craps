@@ -224,13 +224,14 @@ section.bottomRow {
     font-size: 10vh;
 }
 
+
 #activeBets {
-    
+    display: flex;
     flex-direction: column;
+    line-height: 2px;
     grid-row: 1 / 8;
-    align-items: flex-start;
     background-color: darkgreen;
     border: none;
-    font-size: 3vh;
+    font-size: 2.2vh;
     border: 1px solid black;
 }
