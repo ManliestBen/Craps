@@ -133,10 +133,9 @@ function dimChips(){
     document.getElementById('chip5').style.visibility= ((chipTotal < 5) ? 'hidden' : 'visible');
     document.getElementById('chip1').style.visibility= ((chipTotal < 1) ? 'hidden' : 'visible');
 }
-
 function payBets(){
 // Conditions for when a point is active
-    newPointActive = 0;
+    // newPointActive = 0;
     if (pointActive > 0){
     // Payout if current point is rolled.
     for (bet in pointObj){
@@ -165,7 +164,7 @@ function payBets(){
                     if (pointActive === (die1Num + die2Num)){
                         payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
                         centerObj.dontPass.currentBet = 0;
-                        pointActive = 0;
+                        // pointActive = 0;
                     }
                     
                 }
@@ -184,6 +183,7 @@ function payBets(){
                 // Pays the don't pass line on a roll of 7 while point is active
                 for (bet in centerObj){
                     payout = payout + parseInt(centerObj.dontPass.multiplier * centerObj.dontPass.currentBet);
+                    centerObj.passLine.currentBet = 0;
                 }
             pointActive = 0;
             } 
@@ -202,9 +202,9 @@ function payBets(){
             centerObj.passLine.currentBet = 0;
             console.log("CRAPPY CRAP CRAPS!!!");
         }
-        if (die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10){
-            newPointActive = (die1Num + die2Num);
-        }
+        // if (die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10){
+        //     newPointActive = (die1Num + die2Num);
+        // }
         
         // if point is not active and roll is 7 or 11, pay pass line, clear the don't pass line
         // if point is not active and roll is a 2, 3, or 12, pay don't pass line, clear the pass line
@@ -222,12 +222,15 @@ function payBets(){
     }
     
         
-    if (die1Num + die2Num === pointActive){
-        pointActive = 0;
+    // if (die1Num + die2Num === pointActive){
+    //     pointActive = 0;
+    // }
+    if (pointActive === 0 && (die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10)){
+        pointActive = (die1Num + die2Num);
     }
-
+    if (pointActive > 0 && pointActive
     chipTotal += payout;
     payout = 0;
-    pointActive = newPointActive;
+    // pointActive = newPointActive;
     render(); 
 }

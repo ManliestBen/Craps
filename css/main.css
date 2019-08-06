@@ -225,9 +225,12 @@ section.bottomRow {
 }
 
 #activeBets {
-    grid-row: 2 / 7;
+    
+    flex-direction: column;
+    grid-row: 1 / 8;
     align-items: flex-start;
     background-color: darkgreen;
     border: none;
-    font-size: 2vh;
+    font-size: 3vh;
+    border: 1px solid black;
 }
