@@ -78,10 +78,17 @@ function chipClick(evt) {
 
 
 function betClick(evt){
+    var addBetToList = document.createElement("li");
+    var textNode;
     if (evt.target.className === 'pointRow'){
         for (type in pointObj){
             if (type === evt.target.id) {
                 console.log(evt.target.id);
+                if (betTotal > 0) {
+                textNode = document.createTextNode(`Bet $ ${betTotal} on ${evt.target.id}`);
+                addBetToList.appendChild(textNode);
+                document.getElementById("betList").appendChild(addBetToList);
+                }
                 pointObj[type].currentBet = betTotal;
                 betTotal = 0;
                 render();
@@ -91,6 +98,11 @@ function betClick(evt){
         for (type in sideObj){
             if (type === evt.target.id) {
                 console.log(evt.target.id);
+                if (betTotal > 0) {
+                    textNode = document.createTextNode(`Bet $ ${betTotal} on ${evt.target.id}`);
+                    addBetToList.appendChild(textNode);
+                    document.getElementById("betList").appendChild(addBetToList);
+                    }
                 sideObj[type].currentBet = betTotal;
                 betTotal = 0;
                 render();
@@ -99,6 +111,11 @@ function betClick(evt){
     } else if (evt.target.className === 'center') {
         for (type in centerObj){
             if (type === evt.target.id) {
+                if (betTotal > 0) {
+                    textNode = document.createTextNode(`Bet $ ${betTotal} on ${evt.target.id}`);
+                    addBetToList.appendChild(textNode);
+                    document.getElementById("betList").appendChild(addBetToList);
+                    }
                 console.log(evt.target.id);
                 centerObj[type].currentBet = betTotal;
                 betTotal = 0;
@@ -228,7 +245,7 @@ function payBets(){
     if (pointActive === 0 && (die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10)){
         pointActive = (die1Num + die2Num);
     }
-    if (pointActive > 0 && pointActive
+    
     chipTotal += payout;
     payout = 0;
     // pointActive = newPointActive;

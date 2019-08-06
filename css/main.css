@@ -27,7 +27,7 @@ main {
     
     height: auto;
     display: grid;
-    grid-template-columns: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 30vh;
+    grid-template-columns: 10vh 10vh 10vh 10vh 10vh 10vh 10vh 40vh;
     grid-template-rows: 10vh 10vh 10vh 10vh 10vh 10vh 10vh;
 }
 
@@ -227,11 +227,19 @@ section.bottomRow {
 
 #activeBets {
     display: flex;
+    
     flex-direction: column;
-    line-height: 2px;
+    justify-content: left;
+    /* line-height: 10px; */
     grid-row: 1 / 8;
     background-color: darkgreen;
     border: none;
-    font-size: 2.2vh;
+    font-size: 5vh;
     border: 1px solid black;
 }
+ul {
+    font-size: 2.2vh;
+    flex-direction: column;
+    margin-left: -40px;
+}
+
