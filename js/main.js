@@ -157,33 +157,8 @@ function render(){
     // console.log("current point" + pointActive);
     // console.log("Pass line bet is" + centerObj.passLine.currentBet);
     
-    
-    
-    // var addBetToList = document.createElement("li");
-    // var textNode;
-    // if (betTotal > 0) {
-    //     textNode = document.createTextNode(`Bet $ ${betTotal} on ${evt.target.id}`);
-    //     addBetToList.appendChild(textNode);
-    //     document.getElementById("betList").appendChild(addBetToList);
-    //     }
+   
 }
-
-function renderBet(){
-
-}    
-    // for (bet in pointObj){
-    //     if (pointObj[bet].currentBet > 0) {
-            
-    //         var textNode;
-    //         textNode = document.createTextNode(`$ ${pointObj[bet].currentBet} bet on ${pointObj[bet].winnerIf}`);
-    //         addBetToList.appendChild(textNode);
-    //         document.getElementById("betList").appendChild(textNode);
-    //         // addBetToList.removeChild(textNode);
-    //         console.log("text node" + textNode);
-    //         console.log("Bet list console " + addBetToList);
-    //     };
-        
-    // }
 
 function dimChips(){
     document.getElementById('chip1000').style.visibility= ((chipTotal < 1000) ? 'hidden' : 'visible');
