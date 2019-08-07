@@ -49,7 +49,7 @@ function reset(){
 }
 
 function init() {
-    
+    pointActive = 0;
     chipTotal = 1500;
     betTotal = 0;
     dimChips();
