@@ -234,8 +234,7 @@ function payBets(){  // Pay out bets for when a point is active
         console.log('Resetting point to zero on a 7 roll');    
         pointActive = 0;
     } 
-        
-
+    
     // Pays the field, clears bet if not a win
     if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
         if (die1Num + die2Num === 12 || die1Num + die2Num === 2){
@@ -273,7 +272,6 @@ function renderBets(){
         document.getElementById(pointObj[each].reverseName).style.display = 'none';
         }
     }
-    
     for (each in sideObj){
         if (sideObj[each].currentBet > 0){
         document.getElementById(sideObj[each].reverseName).style.display = 'inline';
@@ -282,7 +280,6 @@ function renderBets(){
         document.getElementById(sideObj[each].reverseName).style.display = 'none';
         }
     }
-    
     for (each in centerObj){
         if (centerObj[each].currentBet > 0){
         document.getElementById(centerObj[each].reverseName).style.display = 'inline';
@@ -297,11 +294,9 @@ function displayPoint(){
     for (each in pointObj){
         if (pointActive === pointObj[each].winnerIf){
             document.getElementById(each).style.color = 'red';
-
         } else {
             document.getElementById(each).style.color = 'black';
         }
-        
     }
     console.log('Point is ' + pointActive);
 }
