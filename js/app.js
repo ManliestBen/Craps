@@ -7,6 +7,7 @@ let newPointActive = 0;
 /*-------Constants-------*/
 
 const audioYay = new Audio('/audio/yay.mp3');
+
 const sideObj = {
     anySeven: {name: "Any Seven", reverseName: "neveSyna", multiplier:4, currentBet:0, winnerIf:7, dieSpecific: 0},
     hardFour: {name: "Hard Four", reverseName: "ruoFdrah", multiplier:7, currentBet:0, winnerIf:4, dieSpecific: 1},
