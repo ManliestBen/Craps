@@ -35,20 +35,11 @@ const pointObj = {
     point10: {name: "10", reverseName: "01tniop", multiplier:(9/5), currentBet:0, winnerIf:10}
 }
 
-
-
-/*-------Cached Element References-------*/
-
-
-
 /*-------Event Listeners-------*/
 document.querySelector('section').addEventListener('click', chipClick);
 document.querySelector('main').addEventListener('click', betClick);
 document.getElementById('resetBtn').addEventListener('click', reset);
 document.getElementById('rollBtn').addEventListener('click', rollDice);
-
-
-
 
 /*-------Functions-------*/
 init();
@@ -56,12 +47,22 @@ init();
 function reset(){
     init ();
 }
+
 function init() {
     
     chipTotal = 1500;
     betTotal = 0;
     dimChips();
     render();
+    for (bet in pointObj) {
+        pointObj[bet].currentBet = 0;
+    }
+    for (bet in centerObj) {
+        centerObj[bet].currentBet = 0;
+    }
+    for (bet in sideObj) {
+        sideObj[bet].currentBet = 0;
+    }
 }
 
 function chipClick(evt) {
@@ -155,7 +156,20 @@ function payBetsNoPoint(){
         console.log('Setting point to ' + pointActive);
         pointActive = (die1Num + die2Num);
     }
-
+    // Pays the field, clears bet if not a win
+    if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
+        if (die1Num + die2Num === 12 || die1Num + die2Num === 2){
+            console.log("Paid out double value field bet for a 2 or 12 for $" + payout);
+            payout = payout + (centerObj.fieldBottom.multiplier * 2 * centerObj.fieldBottom.currentBet);
+        } else if (die1Num + die2Num === 3 || die1Num + die2Num === 4 || die1Num + die2Num === 9 || die1Num + die2Num === 10 || die1Num + die2Num === 11) {
+            console.log("Paid out a field bet of $" + payout);
+            payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
+            } 
+        } 
+    else {
+        console.log("Field bet lost, clearing bet.")
+        centerObj.fieldBottom.currentBet = 0;
+        }  
        
         // if point is not active and roll is 7 or 11, pay pass line, clear the don't pass line
         // if point is not active and roll is a 2, 3, or 12, pay don't pass line, clear the pass line
@@ -209,11 +223,11 @@ function payBets(){  // Conditions for when a point is active
                 }
         }
         // Pays the don't pass line on a roll of 7 while point is active
-        for (bet in centerObj){
+    
             console.log('Paid out a dont pass line bet of $' + payout);
             payout = payout + parseInt(centerObj.dontPass.multiplier * centerObj.dontPass.currentBet);
             centerObj.passLine.currentBet = 0;
-        }
+    
         console.log('Resetting point to zero on a 7 roll');    
         pointActive = 0;
     } 
@@ -227,9 +241,9 @@ if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
     } else if (die1Num + die2Num === 3 || die1Num + die2Num === 4 || die1Num + die2Num === 9 || die1Num + die2Num === 10 || die1Num + die2Num === 11) {
         console.log("Paid out a field bet of $" + payout);
         payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
-         
+        } 
     } 
-} else {
+else {
     console.log("Field bet lost, clearing bet.")
     centerObj.fieldBottom.currentBet = 0;
     }    
@@ -239,11 +253,8 @@ if (pointActive === (die1Num + die2Num)){
     console.log("Point hit!  Paid out "+ payout);
     centerObj.dontPass.currentBet = 0;
     pointActive = 0;
-}        
-    // if (die1Num + die2Num === pointActive){
-    //     pointActive = 0;
-    // }
-    
+    }        
+   
     chipTotal += payout;
     payout = 0;
     render(); 
