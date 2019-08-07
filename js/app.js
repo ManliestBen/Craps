@@ -290,18 +290,21 @@ function renderBets(){
         }
     }
 }
-
+// Displays the active point 
 function displayPoint(){
     for (each in pointObj){
         if (pointActive === pointObj[each].winnerIf){
-            document.getElementById(each).style.color = 'red';
+            document.getElementById(each).style.color = 'yellow';
+            document.getElementById(each).style.fontWeight = 'bold';
         } else {
             document.getElementById(each).style.color = 'black';
+            document.getElementById(each).style.fontWeight = 'normal';
         }
     }
     console.log('Point is ' + pointActive);
 }
 
+// Function to handle animations (from animate.css)
 function animateCSS(element, animationName, callback) {
     const node = document.querySelector(element)
     node.classList.add('animated', animationName)
