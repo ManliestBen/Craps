@@ -136,7 +136,8 @@ function dimChips(){
     document.getElementById('chip1').style.visibility= ((chipTotal < 1) ? 'hidden' : 'visible');
 }
 function payBets(){
-// Conditions for when a point is active
+
+    // Conditions for when a point is active
     if (pointActive > 0){
     
     // Payout if current point (that is NOT the active point) is rolled.
@@ -154,6 +155,7 @@ function payBets(){
             console.log('Paid out an Any Craps bet of $' + payout);
         } 
     }
+    
     // Payout for hard-ways, removing bet if 'soft' number is rolled first.
     for (bet in sideObj){
         if ((sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num === die2Num) && sideObj[bet].dieSpecific === 1) {
@@ -164,6 +166,7 @@ function payBets(){
             sideObj[bet].currentBet = 0;
         }
     }
+    
     for (bet in centerObj){
             // if ((die1Num +die2Num !== 7)) {
             //     for (bet in centerObj){
@@ -236,6 +239,9 @@ function payBets(){
             console.log("Paid out a field bet of $" + payout);
             payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
         } 
+    } else {
+        console.log("Field bet lost, clearing bet.")
+        centerObj.fieldBottom.currentBet = 0;
     }
     
         
