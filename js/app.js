@@ -5,6 +5,8 @@ let pointActive = 0;  // 0 means no point is active, otherwise set to the value 
 let newPointActive = 0;
 
 /*-------Constants-------*/
+
+const audioYay = new Audio('/audio/yay.mp3');
 const sideObj = {
     anySeven: {name: "Any Seven", reverseName: "neveSyna", multiplier:4, currentBet:0, winnerIf:7, dieSpecific: 0},
     hardFour: {name: "Hard Four", reverseName: "ruoFdrah", multiplier:7, currentBet:0, winnerIf:4, dieSpecific: 1},
@@ -177,7 +179,10 @@ function payBetsNoPoint(){
         console.log("Field bet lost, clearing bet.")
         centerObj.fieldBottom.currentBet = 0;
         }  
-       
+        
+        if (payout > 0) {
+            setTimeout(function(){audioYay.play();},1000);
+        }
         chipTotal += payout;
         console.log('You just won $ '+payout+'!');
         payout = 0;
@@ -258,7 +263,11 @@ function payBets(){  // Pay out bets for when a point is active
         pointActive = 0;
         }        
    
+    if (payout > 0) {
+        setTimeout(function(){audioYay.play();},1000);
+    }
     chipTotal += payout;
+    
     console.log('You just won $ '+payout+'!');
     payout = 0;
     render(); 
