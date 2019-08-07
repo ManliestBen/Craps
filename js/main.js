@@ -149,15 +149,18 @@ function payBetsNoPoint(){
         payout = payout + centerObj.passLine.currentBet;
         console.log("Seven or eleven rolled while no point active.  Paid out $ " + payout);
         centerObj.dontPass.currentBet = 0;
+        centerObj.come.currentBet = 0;
     }
     if (((die1Num + die2Num) === 2) || ((die1Num + die2Num) === 3) || ((die1Num + die2Num) === 12)){
         console.log("Two, Three, or Twelve rolled.  Removed pass line bet");
         payout = payout + centerObj.dontPass.currentBet;
         centerObj.passLine.currentBet = 0;
     }
-    if (pointActive === 0 && (die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10)){
-        console.log('Setting point to ' + pointActive);
+    if ((die1Num + die2Num === 4 || die1Num + die2Num === 5 || die1Num + die2Num === 6 || die1Num + die2Num === 8 || die1Num + die2Num === 9 || die1Num + die2Num === 10)){
         pointActive = (die1Num + die2Num);
+        pointObj[`point${die1Num+die2Num}`].currentBet = centerObj.come.currentBet;
+        centerObj.come.currentBet = 0;
+        console.log('Setting point to ' + pointActive);
     }
     // Pays the field, clears bet if not a win
     if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
@@ -211,6 +214,7 @@ function payBets(){  // Pay out bets for when a point is active
     
     // Clears the board (except the 'any craps' field) if a 7 is rolled while the point is active.
     if ((die1Num + die2Num === 7)){
+        payout = payout + parseInt(pointObj.dontCome.multiplier * pointObj.dontCome.currentBet);
         for (bet in pointObj){
             console.log('Rolled a 7, removed all active point bets');
             pointObj[bet].currentBet = 0;
