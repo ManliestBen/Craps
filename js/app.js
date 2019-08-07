@@ -268,7 +268,7 @@ function renderBets(){
     for (each in pointObj){
         if (pointObj[each].currentBet > 0){
         document.getElementById(pointObj[each].reverseName).style.display = 'inline';
-        document.getElementById(pointObj[each].reverseName).innerHTML = (`$${pointObj[each].currentBet} bet on ${pointObj[each].name}`);
+        document.getElementById(pointObj[each].reverseName).innerHTML = (`$${pointObj[each].currentBet} on ${pointObj[each].name} ($${parseInt(pointObj[each].currentBet * pointObj[each].multiplier)})`);
     } else {
         document.getElementById(pointObj[each].reverseName).style.display = 'none';
         }
@@ -276,7 +276,7 @@ function renderBets(){
     for (each in sideObj){
         if (sideObj[each].currentBet > 0){
         document.getElementById(sideObj[each].reverseName).style.display = 'inline';
-        document.getElementById(sideObj[each].reverseName).innerHTML = (`$${sideObj[each].currentBet} bet on ${sideObj[each].name}`);
+        document.getElementById(sideObj[each].reverseName).innerHTML = (`$${sideObj[each].currentBet} on ${sideObj[each].name} ($${parseInt(sideObj[each].currentBet * sideObj[each].multiplier)})`);
     } else {
         document.getElementById(sideObj[each].reverseName).style.display = 'none';
         }
@@ -284,7 +284,7 @@ function renderBets(){
     for (each in centerObj){
         if (centerObj[each].currentBet > 0){
         document.getElementById(centerObj[each].reverseName).style.display = 'inline';
-        document.getElementById(centerObj[each].reverseName).innerHTML = (`$${centerObj[each].currentBet} bet on ${centerObj[each].name}`);
+        document.getElementById(centerObj[each].reverseName).innerHTML = (`$${centerObj[each].currentBet} on ${centerObj[each].name} ($${parseInt(centerObj[each].currentBet * centerObj[each].multiplier)})`);
     } else {
         document.getElementById(centerObj[each].reverseName).style.display = 'none';
         }
