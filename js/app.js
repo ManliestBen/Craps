@@ -38,7 +38,7 @@ const spots12 = new Audio('/audio/spots12.mp3');
 const yoeleven = new Audio('/audio/yoeleven.mp3');
 
 
-
+// 3 objects, one for each 'section' of the board
 const sideObj = {
     anySeven: {name: "Any Seven", reverseName: "neveSyna", multiplier:4, currentBet:0, winnerIf:7, dieSpecific: 0},
     hardFour: {name: "Hard Four", reverseName: "ruoFdrah", multiplier:7, currentBet:0, winnerIf:4, dieSpecific: 1},
@@ -82,6 +82,7 @@ function reset(){
     init ();
 }
 
+// Initialization function resets all variables on the board for a new game.
 function init() {
     pointActive = 0;
     chipTotal = 1500;
@@ -99,6 +100,7 @@ function init() {
     }
 }
 
+// Adds amount of clicked chip to the bet total.
 function chipClick(evt) {
     if (evt.target.className === 'chip' && chipTotal > 0){
         betTotal += parseInt(evt.target.innerText);
@@ -106,11 +108,11 @@ function chipClick(evt) {
         console.log(evt.target.innerText);
         render();
     } else if (evt.target.className === 'chip'){
-     }
+    }
     render();
 }
 
-
+// Function to assign the total selected bet to the spot clicked.  Also, removes a bet if clicked when bet total is 0.
 function betClick(evt){
     if (evt.target.className === 'pointRow'){
         for (type in pointObj){
@@ -144,9 +146,9 @@ function betClick(evt){
         }
     }
 render()
-
 }
 
+// Rolls two dice
 function rollDice(){
     die1Num = Math.floor(Math.random()*6) + 1;
     die2Num =  Math.floor(Math.random()*6) + 1;
@@ -167,9 +169,9 @@ function render(){
     dimChips();
     document.getElementById('chipDisplay').innerText = '$ ' + chipTotal;
     document.getElementById('betDisplay').innerText = '$ ' + betTotal;
-    
 }
 
+// Turns the chips invisible based on remaining chip stack total
 function dimChips(){
     document.getElementById('chip1000').style.visibility= ((chipTotal < 1000) ? 'hidden' : 'visible');
     document.getElementById('chip500').style.visibility= ((chipTotal < 500) ? 'hidden' : 'visible');
@@ -179,15 +181,14 @@ function dimChips(){
     document.getElementById('chip1').style.visibility= ((chipTotal < 1) ? 'hidden' : 'visible');
 }
 
+// Function to pay bets if there is not an active point
 function payBetsNoPoint(){
     if (((die1Num + die2Num) === 7) || ((die1Num + die2Num) === 11)){
         payout = payout + centerObj.passLine.currentBet;
-        console.log("Seven or eleven rolled while no point active.  Paid out $ " + payout);
         centerObj.dontPass.currentBet = 0;
         centerObj.come.currentBet = 0;
     }
     if (((die1Num + die2Num) === 2) || ((die1Num + die2Num) === 3) || ((die1Num + die2Num) === 12)){
-        console.log("Two, Three, or Twelve rolled.  Removed pass line bet");
         payout = payout + centerObj.dontPass.currentBet;
         centerObj.passLine.currentBet = 0;
     }
@@ -195,33 +196,28 @@ function payBetsNoPoint(){
         pointActive = (die1Num + die2Num);
         pointObj[`point${die1Num+die2Num}`].currentBet = centerObj.come.currentBet;
         centerObj.come.currentBet = 0;
-        console.log('Setting point to ' + pointActive);
     }
     // Pays the field, clears bet if not a win
     if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
         if (die1Num + die2Num === 12 || die1Num + die2Num === 2){
-            console.log("Paid out double value field bet for a 2 or 12 for $" + payout);
             payout = payout + (centerObj.fieldBottom.multiplier * 2 * centerObj.fieldBottom.currentBet);
         } else if (die1Num + die2Num === 3 || die1Num + die2Num === 4 || die1Num + die2Num === 9 || die1Num + die2Num === 10 || die1Num + die2Num === 11) {
-            console.log("Paid out a field bet of $" + payout);
             payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
-            } 
         } 
+    } 
     else {
-        console.log("Field bet lost, clearing bet.")
         centerObj.fieldBottom.currentBet = 0;
-        }  
+    }  
         
-        callDice();
+    callDice();
         if (payout > 0) {
             setTimeout(function(){audioYay.play();},3500);
             confetti.start(payout);
         }
     
-        chipTotal += payout;
-        console.log('You just won $ '+payout+'!');
-        payout = 0;
-        render();
+    chipTotal += payout;
+    payout = 0;
+    render();
     }
 
 function payBets(){  // Pay out bets for when a point is active
@@ -230,7 +226,6 @@ function payBets(){  // Pay out bets for when a point is active
     for (bet in pointObj){
         if (((die1Num + die2Num) === pointObj[bet].winnerIf)) {
             payout = payout + parseInt(pointObj[bet].multiplier * pointObj[bet].currentBet);
-            console.log('Paid out a point (non-active) bet of $' + payout);
         }
     }
     
@@ -238,7 +233,6 @@ function payBets(){  // Pay out bets for when a point is active
     for (bet in sideObj){
         if ((sideObj[bet].winnerIf === (die1Num + die2Num) || (die1Num + die2Num === 2) || (die1Num + die2Num === 3) || (die1Num + die2Num === 12)) && sideObj[bet].dieSpecific === 0) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
-            console.log('Paid out an Any Craps bet of $' + payout);
         } 
     }
     
@@ -246,9 +240,8 @@ function payBets(){  // Pay out bets for when a point is active
     for (bet in sideObj){
         if ((sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num === die2Num) && sideObj[bet].dieSpecific === 1) {
             payout = payout + parseInt(sideObj[bet].multiplier * sideObj[bet].currentBet);
-            console.log('Paid out a hard ways bet of $' + payout);
-        } if ((sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num !== die2Num)) {
-            console.log('Lost hard way bet');
+        } 
+        if ((sideObj[bet].winnerIf === (die1Num + die2Num)) && (die1Num !== die2Num)) {
             sideObj[bet].currentBet = 0;
         }
     }
@@ -257,81 +250,73 @@ function payBets(){  // Pay out bets for when a point is active
     if ((die1Num + die2Num === 7)){
         payout = payout + parseInt(pointObj.dontCome.multiplier * pointObj.dontCome.currentBet);
         for (bet in pointObj){
-            console.log('Rolled a 7, removed all active point bets');
             pointObj[bet].currentBet = 0;
         }
         for (bet in sideObj){
             if (sideObj.anySeven.currentBet > 0){
                 payout = payout + sideObj.anySeven.currentBet;
-                console.log('Paid out Any Seven bet of $' + payout);
             } else {
                 sideObj[bet].currentBet = 0;
-                }
+            }
         }
         // Pays the don't pass line on a roll of 7 while point is active
-        console.log('Paid out a dont pass line bet of $' + payout);
         payout = payout + parseInt(centerObj.dontPass.multiplier * centerObj.dontPass.currentBet);
         centerObj.passLine.currentBet = 0;
-        console.log('Resetting point to zero on a 7 roll');    
         pointActive = 0;
     } 
     
     // Pays the field, clears bet if not a win
     if (centerObj.fieldBottom.winnerIf.includes(die1Num+die2Num)){
         if (die1Num + die2Num === 12 || die1Num + die2Num === 2){
-            console.log("Paid out double value field bet for a 2 or 12 for $" + payout);
             payout = payout + (centerObj.fieldBottom.multiplier * 2 * centerObj.fieldBottom.currentBet);
         } else if (die1Num + die2Num === 3 || die1Num + die2Num === 4 || die1Num + die2Num === 9 || die1Num + die2Num === 10 || die1Num + die2Num === 11) {
-            console.log("Paid out a field bet of $" + payout);
             payout = payout + (centerObj.fieldBottom.multiplier * centerObj.fieldBottom.currentBet);
-            } 
         } 
-    else {
-        console.log("Field bet lost, clearing bet.")
+    } else {
         centerObj.fieldBottom.currentBet = 0;
-        }    
+    }    
 
     if (pointActive === (die1Num + die2Num)){
         payout = payout + parseInt(centerObj.passLine.multiplier * centerObj.passLine.currentBet);
-        console.log("Point hit!  Paid out "+ payout);
         centerObj.dontPass.currentBet = 0;
         pointActive = 0;
-        }        
+    }        
    
     callDice();
+    // Displays confetti on a win proportional to the amount won.  Bigger win = MOAR CONFETTI!
     if (payout > 0) {
         setTimeout(function(){audioYay.play();},3500);
         confetti.start(payout);
     }
     chipTotal += payout;
-    console.log('You just won $ '+payout+'!');
     payout = 0;
     render(); 
 }
 
+// Function to render all bet info to the screen
 function renderBets(){
     for (each in pointObj){
         if (pointObj[each].currentBet > 0){
-        document.getElementById(pointObj[each].reverseName).style.display = 'inline';
-        document.getElementById(pointObj[each].reverseName).innerHTML = (`$${pointObj[each].currentBet} on ${pointObj[each].name} ($${parseInt(pointObj[each].currentBet * pointObj[each].multiplier)})`);
-    } else {
-        document.getElementById(pointObj[each].reverseName).style.display = 'none';
+            document.getElementById(pointObj[each].reverseName).style.display = 'inline';
+            document.getElementById(pointObj[each].reverseName).innerHTML = (`$${pointObj[each].currentBet} on ${pointObj[each].name} ($${parseInt(pointObj[each].currentBet * pointObj[each].multiplier)})`);
+        } else {
+            document.getElementById(pointObj[each].reverseName).style.display = 'none';
         }
     }
     for (each in sideObj){
         if (sideObj[each].currentBet > 0){
-        document.getElementById(sideObj[each].reverseName).style.display = 'inline';
-        document.getElementById(sideObj[each].reverseName).innerHTML = (`$${sideObj[each].currentBet} on ${sideObj[each].name} ($${parseInt(sideObj[each].currentBet * sideObj[each].multiplier)})`);
-    } else {
-        document.getElementById(sideObj[each].reverseName).style.display = 'none';
+            document.getElementById(sideObj[each].reverseName).style.display = 'inline';
+            document.getElementById(sideObj[each].reverseName).innerHTML = (`$${sideObj[each].currentBet} on ${sideObj[each].name} ($${parseInt(sideObj[each].currentBet * sideObj[each].multiplier)})`);
+        } else {
+            document.getElementById(sideObj[each].reverseName).style.display = 'none';
         }
     }
     for (each in centerObj){
         if (centerObj[each].currentBet > 0){
-        document.getElementById(centerObj[each].reverseName).style.display = 'inline';
-        document.getElementById(centerObj[each].reverseName).innerHTML = (`$${centerObj[each].currentBet} on ${centerObj[each].name} ($${parseInt(centerObj[each].currentBet * centerObj[each].multiplier)})`);
-    } else {
-        document.getElementById(centerObj[each].reverseName).style.display = 'none';
+            document.getElementById(centerObj[each].reverseName).style.display = 'inline';
+            document.getElementById(centerObj[each].reverseName).innerHTML = (`$${centerObj[each].currentBet} on ${centerObj[each].name} ($${parseInt(centerObj[each].currentBet * centerObj[each].multiplier)})`);
+        } else {
+            document.getElementById(centerObj[each].reverseName).style.display = 'none';
         }
     }
 }
@@ -346,7 +331,6 @@ function displayPoint(){
             document.getElementById(each).style.fontWeight = 'normal';
         }
     }
-    console.log('Point is ' + pointActive);
 }
 
 // Function to handle animations (from animate.css)
@@ -364,6 +348,7 @@ function animateCSS(element, animationName, callback) {
     node.addEventListener('animationend', handleAnimationEnd)
 }
 
+// Function to announce each roll of the dice
 function callDice(){
     if (die1Num+die2Num === 2){
         setTimeout(function(){pairaces.play();},500);
@@ -392,7 +377,7 @@ function callDice(){
     if ((die1Num === 4 && die2Num === 2) || (die1Num === 5 && die2Num === 1) || (die1Num === 1 && die2Num === 5) || (die1Num === 2 && die2Num === 4)){
         setTimeout(function(){sixiedixie.play();},500);
     }
-    if ((die1Num === 1 && die2Num === 6) || (die1Num === 1 && die2Num === 6)){
+    if ((die1Num === 1 && die2Num === 6) || (die1Num === 6 && die2Num === 1)){
         setTimeout(function(){kickface7.play();},500);
     }
     if ((die1Num === 3 && die2Num === 4) || (die1Num === 4 && die2Num === 3)){
