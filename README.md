@@ -6,7 +6,7 @@
 ##
 ##
 ## To play the game:
-### Click [here](https://www.placeholder.com) to play the game.
+### Click [here](http://crappy-craps.surge.sh) to play the game.
 ##
 ##
 ## Motivation:
