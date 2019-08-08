@@ -24,6 +24,8 @@
 - HTML
 - Git 
 - confetti.js
+
+## Credits:
 - Custom background https://leaverou.github.io/css3patterns/#upholstery Nate Engel
 
 ## Pseudocode:
