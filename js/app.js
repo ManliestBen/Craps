@@ -36,7 +36,7 @@ const sixiedixie = new Audio('/audio/sixiedixie.mp3');
 const snakeeyes = new Audio('/audio/snakeeyes.mp3');
 const spots12 = new Audio('/audio/spots12.mp3');
 const yoeleven = new Audio('/audio/yoeleven.mp3');
-
+const dicesound = new Audio('/audio/dice.mp3');
 
 // 3 objects, one for each 'section' of the board
 const sideObj = {
@@ -150,6 +150,7 @@ render()
 
 // Rolls two dice
 function rollDice(){
+    setTimeout(function(){dicesound.play();},10);
     die1Num = Math.floor(Math.random()*6) + 1;
     die2Num =  Math.floor(Math.random()*6) + 1;
     die1Text = "&#x268" + (die1Num - 1) + " ";
