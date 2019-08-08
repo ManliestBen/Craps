@@ -181,6 +181,7 @@ function payBetsNoPoint(){
         centerObj.fieldBottom.currentBet = 0;
         }  
         
+        callDice();
         if (payout > 0) {
             setTimeout(function(){audioYay.play();},200);
             confetti.start(payout);
@@ -266,12 +267,12 @@ function payBets(){  // Pay out bets for when a point is active
         pointActive = 0;
         }        
    
+    callDice();
     if (payout > 0) {
         setTimeout(function(){audioYay.play();},200);
         confetti.start(payout);
     }
     chipTotal += payout;
-    
     console.log('You just won $ '+payout+'!');
     payout = 0;
     render(); 
@@ -330,4 +331,67 @@ function animateCSS(element, animationName, callback) {
     }
 
     node.addEventListener('animationend', handleAnimationEnd)
+}
+
+function callDice(){
+    if (die1Num+die2Num === 2){
+        setTimeout(function(){pairaces.play();},500);
+    }
+    if ((die1Num+die2Num === 3) && die2Num === 1){
+        setTimeout(function(){aussieyo.play();},500);
+    }
+    if ((die1Num+die2Num === 3) && die1Num === 1){
+        setTimeout(function(){craps3tummy.play();},500);
+    }
+    if (die1Num+die2Num === 4 && (die1Num === 3 || die2Num === 3)){
+        setTimeout(function(){kokomo4.play();},500);
+    }
+    if (die1Num+die2Num === 4 && (die1Num === die2Num)){
+        setTimeout(function(){hard4tutu.play();},500);
+    }
+    if (die1Num === 3 && die2Num === 2){
+        setTimeout(function(){juice32.play();},500);
+    }
+    if (die1Num === 2 && die2Num === 3){
+        setTimeout(function(){nofield5.play();},500);
+    }
+    if (die1Num === 3 && die2Num === 3){
+        setTimeout(function(){hard6breakfast.play();},500);
+    }
+    if ((die1Num === 4 && die2Num === 2) || (die1Num === 5 && die2Num === 1)){
+        setTimeout(function(){sixiedixie.play();},500);
+    }
+    if ((die1Num === 1 && die2Num === 6) || (die1Num === 1 && die2Num === 6)){
+        setTimeout(function(){kickface7.play();},500);
+    }
+    if ((die1Num === 3 && die2Num === 4) || (die1Num === 4 && die2Num === 3)){
+        setTimeout(function(){door34.play();},500);
+    }
+    if ((die1Num === 2 && die2Num === 5) || (die1Num === 5 && die2Num === 2)){
+        setTimeout(function(){blue52.play();},500);
+    }
+    if (die1Num === 4 && die2Num === 4){
+        setTimeout(function(){hard8.play();},500);
+    }
+    if ((die1Num + die2Num === 8) && (die1Num === die2Num)){
+        setTimeout(function(){decatur8.play();},500);
+    }
+    if (die1Num === 5 && die2Num === 4){
+        setTimeout(function(){ninapasadena.play();},500);
+    }
+    if (die1Num === 4 && die2Num === 5){
+        setTimeout(function(){centerfield9.play();},500);
+    }
+    if ((die1Num === 4 && die2Num === 6) || (die1Num === 6 && die2Num === 4)){
+        setTimeout(function(){bigone46.play();},500);
+    }
+    if (die1Num === 5 && die2Num === 5){
+        setTimeout(function(){hard10.play();},500);
+    }
+    if (die1Num + die2Num === 11){
+        setTimeout(function(){yoeleven.play();},500);
+    }
+    if (die1Num + die2Num === 12){
+        setTimeout(function(){boxcar12.play();},500);
+    }
 }
