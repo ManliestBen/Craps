@@ -52,7 +52,7 @@
 - As a user, I should be able to see the current bets that are active and have the ability to cancel them if the rules of the game permit it.
 - As a user, I should be able to hear dealer call-outs that mimic those heard on traditional craps tables.
 - As a user, I should be able to hear the sound of the dice rolling when I push the button to roll the dice.
-- As a user, I should see a message showing the status of my last roll.
+- As a user, I should see a message showing the dice that I just rolled.
 - As a user, I should be paid the correct amount when I win a bet.
 
 ## Stretch Goals:
