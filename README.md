@@ -56,9 +56,9 @@
 - As a user, I should be paid the correct amount when I win a bet.
 
 ## Stretch Goals:
-- Animated dice rolls
+- ~~Animated dice rolls~~
 - Stylized casino chips
-- Texturized playing field to mimic a felt surface
+- ~~Texturized playing field to mimic a felt surface~~
 - Help button(s) for different fields on the board
 - Suggested bet options
 - Ability to play odds on the Pass Line
