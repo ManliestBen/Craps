@@ -183,6 +183,8 @@ section.bottomRow {
 #resetBtn {
     grid-column: 9 / 10;
     grid-row: 2;
+    height: 6vh;
+    font-size: 2vh;
 }
 
 #betAmount {
