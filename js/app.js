@@ -7,6 +7,37 @@ let newPointActive = 0;
 /*-------Constants-------*/
 
 const audioYay = new Audio('/audio/yay.mp3');
+const aussieyo = new Audio('/audio/aussieyo.mp3');
+const bigone46 = new Audio('/audio/bigone46.mp3');
+const blue52 = new Audio('/audio/blue52.mp3');
+const boxcar12 = new Audio('/audio/boxcar12.mp3');
+const brooklyn33 = new Audio('/audio/brooklyn33.mp3');
+const centerfield9 = new Audio('/audio/centerfield9.mp3');
+const craps3 = new Audio('/audio/craps3.mp3');
+const craps3tummy = new Audio('/audio/craps3tummy.mp3');
+const craps12 = new Audio('/audio/craps12.mp3');
+const decatur8 = new Audio('/audio/decatur8.mp3');
+const dipple12 = new Audio('/audio/dipple12.mp3');
+const door34 = new Audio('/audio/door34.mp3');
+const easy6 = new Audio('/audio/easy6.mp3');
+const hard4 = new Audio('/audio/hard4.mp3');
+const hard4tutu = new Audio('/audio/hard4tutu.mp3');
+const hard6breakfast = new Audio('/audio/hard6breakfast.mp3');
+const hard8 = new Audio('/audio/hard8.mp3');
+const hard10 = new Audio('/audio/hard10.mp3');
+const juice32 = new Audio('/audio/juice32.mp3');
+const kickface7 = new Audio('/audio/kickface7.mp3');
+const kokomo4 = new Audio('/audio/kokomo4.mp3');
+const ninapasadena = new Audio('/audio/ninapasadena.mp3');
+const nofield5 = new Audio('/audio/nofield5.mp3');
+const nojive65 = new Audio('/audio/nojive65.mp3');
+const pairaces = new Audio('/audio/pairaces.mp3');
+const sixiedixie = new Audio('/audio/sixiedixie.mp3');
+const snakeeyes = new Audio('/audio/snakeeyes.mp3');
+const spots12 = new Audio('/audio/spots12.mp3');
+const yoeleven = new Audio('/audio/yoeleven.mp3');
+
+
 
 const sideObj = {
     anySeven: {name: "Any Seven", reverseName: "neveSyna", multiplier:4, currentBet:0, winnerIf:7, dieSpecific: 0},
@@ -349,10 +380,10 @@ function callDice(){
     if (die1Num+die2Num === 4 && (die1Num === die2Num)){
         setTimeout(function(){hard4tutu.play();},500);
     }
-    if (die1Num === 3 && die2Num === 2){
+    if ((die1Num === 3 && die2Num === 2) || (die1Num === 2 && die2Num === 3)){
         setTimeout(function(){juice32.play();},500);
     }
-    if (die1Num === 2 && die2Num === 3){
+    if ((die1Num === 4 && die2Num === 1) || (die1Num === 1 && die2Num === 4)){
         setTimeout(function(){nofield5.play();},500);
     }
     if (die1Num === 3 && die2Num === 3){
@@ -373,13 +404,13 @@ function callDice(){
     if (die1Num === 4 && die2Num === 4){
         setTimeout(function(){hard8.play();},500);
     }
-    if ((die1Num + die2Num === 8) && (die1Num === die2Num)){
+    if ((die1Num + die2Num === 8) && (die1Num !== die2Num)){
         setTimeout(function(){decatur8.play();},500);
     }
-    if (die1Num === 5 && die2Num === 4){
+    if ((die1Num === 5 && die2Num === 4) || (die1Num === 4 && die2Num === 5)) {
         setTimeout(function(){ninapasadena.play();},500);
     }
-    if (die1Num === 4 && die2Num === 5){
+    if ((die1Num === 6 && die2Num === 3) || (die1Num === 3 && die2Num === 6)) {
         setTimeout(function(){centerfield9.play();},500);
     }
     if ((die1Num === 4 && die2Num === 6) || (die1Num === 6 && die2Num === 4)){
