@@ -182,8 +182,10 @@ function payBetsNoPoint(){
         }  
         
         if (payout > 0) {
-            setTimeout(function(){audioYay.play();},1000);
+            setTimeout(function(){audioYay.play();},200);
+            confetti.start(payout);
         }
+    
         chipTotal += payout;
         console.log('You just won $ '+payout+'!');
         payout = 0;
@@ -265,7 +267,8 @@ function payBets(){  // Pay out bets for when a point is active
         }        
    
     if (payout > 0) {
-        setTimeout(function(){audioYay.play();},1000);
+        setTimeout(function(){audioYay.play();},200);
+        confetti.start(payout);
     }
     chipTotal += payout;
     
