@@ -24,6 +24,7 @@
 - HTML
 - Git 
 - confetti.js
+- animate.css
 
 ## Credits:
 - Custom background https://leaverou.github.io/css3patterns/#upholstery Nate Engel
