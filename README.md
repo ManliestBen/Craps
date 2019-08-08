@@ -21,8 +21,21 @@
 - Git 
 
 ## Pseudocode:
-- Bet is placed
-- Roll the dice
+- Click chips to increase bet value
+- Click area where bet should be placed
+- Click area where bet is with empty bet total to remove current bet
+- Bet displayed in 'Active Bets' area
+- Click to roll dice
+- Play sound file based on dice rolled
+- Analyze roll --> send to appropriate payout function
+  - If 7 or 11, pay out pass line, remove don't pass line bet
+  - If 2, 3, or 12, pay out don't pass line, remove pass line bet
+  - If 4, 5, 6, 8, 9, or 10, set point value on top row, add come bet to point bet above
+  - If 2, 3, 4, 9, 10, 11, or 12, pay the field (double if 2 or 12)
+  - If side bets win, pay out side bets
+- If dice roll results in payout, display confetti and play 'yaay' sound
+- Profit
+
 
 # User Experience:
 ## User Persona #1:
