@@ -44,7 +44,7 @@
 ### Abby works for a tech company in Austin, Texas.  Her employer frequently sends her to tech conferences around the globe.  Abby has an upcoming trip to Las Vegas, and knows from previous trips that her co-workers **love** playing craps as a group.  Abby wants to learn the rules of the game, how the game flows, and most importantly the lingo that goes along with it.  
 
 ## User Persona #2:
-### Frankie is a card-shark and loves to gamble.  He frequently visits the riverboat casino in his home town.  Frankie is becoming tired of winning so much at all the card games that he has mastered.  He is looking for a way to practice the game over and over so that he can sharpen his skills and become a pro before his next casino visit.
+### Frankie is a card-shark and loves to gamble.  He frequently visits the riverboat casino in his home town.  Frankie is becoming tired of winning at all the card games that he has mastered.  He is looking for a way to practice the game of craps repeatedly so that he can sharpen his skills and become a dice-slinging pro before his next casino visit.
 
 ## Minimum Viable Product:
 - As a user, I should be able to see what my chip total is and increment my next bet by clicking on different buttons.
