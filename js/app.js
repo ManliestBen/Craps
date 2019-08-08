@@ -389,7 +389,7 @@ function callDice(){
     if (die1Num === 3 && die2Num === 3){
         setTimeout(function(){hard6breakfast.play();},500);
     }
-    if ((die1Num === 4 && die2Num === 2) || (die1Num === 5 && die2Num === 1)){
+    if ((die1Num === 4 && die2Num === 2) || (die1Num === 5 && die2Num === 1) || (die1Num === 1 && die2Num === 5) || (die1Num === 2 && die2Num === 4)){
         setTimeout(function(){sixiedixie.play();},500);
     }
     if ((die1Num === 1 && die2Num === 6) || (die1Num === 1 && die2Num === 6)){
