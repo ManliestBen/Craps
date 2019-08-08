@@ -12,8 +12,10 @@
 ## Motivation:
 ### I learned how to play the game of craps onboard a cruise ship while vacationing with my family when I was younger.  I was drawn to the social aspect of the game and how despite betting independently from one another, people at a table encourage each other so that everyone does well.
 ## Prototype View:
-### Here is a wire-frame of how the playing field will be set up:
+### Here is an initial wire-frame of how the playing field will be set up:
 ![Craps playing field](assets/Wireframe.png)
+### Here is what the playing field looks like, post styling:
+![Craps playing field current](assets/current.png)
 ## Technology Implemented:
 - JavaScript
 - CSS
