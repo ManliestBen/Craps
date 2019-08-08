@@ -21,6 +21,8 @@
 - CSS
 - HTML
 - Git 
+- confetti.js
+- Custom background https://leaverou.github.io/css3patterns/#upholstery Nate Engel
 
 ## Pseudocode:
 - Click chips to increase bet value
