@@ -72,4 +72,5 @@
 - Add a list of previous rolls
 - Add a list of previous roll frequency
 - Add selectable 'felt' colors for the play field
+- Add mobile responsiveness
 
