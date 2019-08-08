@@ -351,7 +351,7 @@ function animateCSS(element, animationName, callback) {
 // Function to announce each roll of the dice
 function callDice(){
     if (die1Num+die2Num === 2){
-        setTimeout(function(){pairaces.play();},500);
+        setTimeout(function(){snakeeyes.play();},500);
     }
     if ((die1Num+die2Num === 3) && die2Num === 1){
         setTimeout(function(){aussieyo.play();},500);
