@@ -214,7 +214,7 @@ function payBetsNoPoint(){
         
         callDice();
         if (payout > 0) {
-            setTimeout(function(){audioYay.play();},200);
+            setTimeout(function(){audioYay.play();},1000);
             confetti.start(payout);
         }
     
@@ -300,7 +300,7 @@ function payBets(){  // Pay out bets for when a point is active
    
     callDice();
     if (payout > 0) {
-        setTimeout(function(){audioYay.play();},200);
+        setTimeout(function(){audioYay.play();},1000);
         confetti.start(payout);
     }
     chipTotal += payout;
