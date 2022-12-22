@@ -1,6 +1,5 @@
-# Craps Simulator
-
 ![Craps playing field current](assets/current.png)
+# Craps Simulator
 
 ## Objective:
 Create a browser-based game that accurately models playing a classic game of craps.
