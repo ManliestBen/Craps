@@ -1,5 +1,7 @@
 # Craps Simulator
 
+![Craps playing field current](assets/current.png)
+
 ## Objective:
 Create a browser-based game that accurately models playing a classic game of craps.
 
@@ -14,8 +16,6 @@ I learned how to play the game of craps onboard a cruise ship while vacationing 
 ![Craps playing field first drawing](assets/drawing.png)
 ### Here is an initial wire-frame of how the playing field will be set up:
 ![Craps playing field](assets/Wireframe.png)
-### Here is what the playing field looks like, post styling:
-![Craps playing field current](assets/current.png)
 
 ## Technology Implemented:
 - JavaScript
